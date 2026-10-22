@@ -829,6 +829,15 @@
   .exp-block p { margin-top: 8px; font-size: .93rem; color: var(--ink-soft); }
   .exp-block p b { color: var(--ink); }
   .exp-tip { color: var(--ink) !important; }
+  .opt-list { display: grid; gap: 12px; margin-top: 14px; }
+  .opt { padding: 14px; border-radius: var(--radius-md); background: var(--surface); border: 1.5px solid var(--line); }
+  .opt.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .opt-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 1rem; }
+  .opt-head .goal-tag { margin-left: 0; }
+  .opt p { margin-top: 6px; }
+  .opt-meta { font-size: .85rem !important; }
+  .opt-day { font-size: .84rem !important; }
+  .opt .choice-btn { width: 100%; margin-top: 10px; }
   .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
   .choice-btn { appearance: none; cursor: pointer; font: 600 .92rem "Outfit", system-ui, sans-serif; padding: 12px 8px; border-radius: var(--radius-md); border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); min-height: 52px; }
   .choice-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
@@ -1178,6 +1187,7 @@
         <button type="button" class="mode-btn" data-mode="casa" aria-pressed="false">🏠 En casa</button>
       </div>
       <p class="home-note" id="homeNote" hidden></p>
+      <button class="reset" type="button" id="changeRoutine" hidden>🔁 Ver otras rutinas</button>
 
       <div class="tabs" role="tablist" aria-label="Días de entrenamiento">
       </div>
