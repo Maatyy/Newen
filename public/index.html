@@ -822,6 +822,21 @@
   .xp-help { text-align: center; }
   @media (prefers-reduced-motion: reduce) { .ex-sheet, .sheet-panel { transition: none; } }
 
+
+  /* ---------- Con experiencia: recomendación y rutina propia ---------- */
+  .exp-block { margin-top: 18px; padding: 16px; border-radius: var(--radius-md); background: var(--surface-2); border: 1.5px solid var(--accent); }
+  .exp-block h4 { font-weight: 600; font-size: 1.05rem; }
+  .exp-block p { margin-top: 8px; font-size: .93rem; color: var(--ink-soft); }
+  .exp-block p b { color: var(--ink); }
+  .exp-tip { color: var(--ink) !important; }
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+  .choice-btn { appearance: none; cursor: pointer; font: 600 .92rem "Outfit", system-ui, sans-serif; padding: 12px 8px; border-radius: var(--radius-md); border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); min-height: 52px; }
+  .choice-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+  .ex-rm { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #F87171; background: var(--surface); color: #F87171; font-size: .9rem; cursor: pointer; }
+  .my-edit { margin: 0 14px 14px; padding: 14px; border-radius: var(--radius-md); background: var(--surface-2); border: 1.5px dashed var(--accent); display: grid; gap: 10px; }
+  .my-edit input, .my-edit select { width: 100%; font: 400 16px "Outfit", system-ui, sans-serif; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius-sm); padding: 11px 12px; }
+  .my-row { display: grid; grid-template-columns: minmax(118px, 1fr) minmax(0, 1fr) auto; gap: 8px; }
+  .my-row .btn { min-height: 46px; padding: 10px 14px; }
   /* ---------- Versión hombre: sin ciclo, embarazo ni mascota ---------- */
   #cycleCard, .logo-acc, #mascota { display: none !important; }
   /* ---------- BETA N°1 · mejoras de diseño ---------- */
@@ -1168,6 +1183,7 @@
       </div>
 
       <article class="day-card" id="dayPanel" role="tabpanel" aria-live="polite"></article>
+      <datalist id="exCatalog"></datalist>
 
       <div class="coach-note"><strong>⬆ ¿Cuándo subir de peso?</strong> Si logras todas las reps 2 veces seguidas, sube 1 a 2,5 kg. La app te avisa sola. Los ejercicios cambian cada 4 semanas.</div>
     </div>
@@ -1575,8 +1591,29 @@
           <div class="pills">
             <label class="pill"><input type="radio" name="exp" value="nunca" checked><span>Nunca</span></label>
             <label class="pill"><input type="radio" name="exp" value="poco"><span>Alguna vez</span></label>
+            <label class="pill"><input type="radio" name="exp" value="si"><span>Sí, entreno ahora</span></label>
           </div>
         </fieldset>
+          <div class="cond" id="expBox" hidden>
+            <fieldset class="field-group">
+              <legend>¿Cuánto tiempo has entrenado seguido?</legend>
+              <div class="pills"><label class="pill"><input type="radio" name="expTime" value="lt6" checked><span>Menos de 6 meses</span></label><label class="pill"><input type="radio" name="expTime" value="6a12"><span>6 a 12 meses</span></label><label class="pill"><input type="radio" name="expTime" value="gt12"><span>Más de 1 año</span></label></div>
+            </fieldset>
+            <fieldset class="field-group">
+              <legend>¿Cómo entrenas (o entrenabas)?</legend>
+              <div class="pills"><label class="pill"><input type="radio" name="split" value="full"><span>Cuerpo completo</span></label><label class="pill"><input type="radio" name="split" value="tp"><span>Torso y pierna</span></label><label class="pill"><input type="radio" name="split" value="ppl"><span>Empuje, tirón y pierna</span></label><label class="pill"><input type="radio" name="split" value="weider"><span>Un grupo muscular por día</span></label><label class="pill"><input type="radio" name="split" value="otro" checked><span>Sin un plan fijo</span></label></div>
+            </fieldset>
+            <fieldset class="field-group">
+              <legend>Tus pesos actuales<small class="legend-hint">Opcional. El peso con el que haces unas 8 a 10 repeticiones. Así partimos con el peso correcto.</small></legend>
+              <div class="field-row-3">
+                <label class="field"><span>Sentadilla con barra</span><input type="number" id="lSq" inputmode="decimal" min="0" max="400" step="0.5" placeholder="kg"></label>
+                <label class="field"><span>Press de banca</span><input type="number" id="lBp" inputmode="decimal" min="0" max="300" step="0.5" placeholder="kg"></label>
+                <label class="field"><span>Remo con barra</span><input type="number" id="lRow" inputmode="decimal" min="0" max="300" step="0.5" placeholder="kg"></label>
+                <label class="field"><span>Peso muerto</span><input type="number" id="lDl" inputmode="decimal" min="0" max="450" step="0.5" placeholder="kg"></label>
+                <label class="field"><span>Press de hombros<em> (cada mancuerna)</em></span><input type="number" id="lOhp" inputmode="decimal" min="0" max="100" step="0.5" placeholder="kg"></label>
+              </div>
+            </fieldset>
+          </div>
 
           <fieldset class="field-group">
           <legend>¿Cuántos días a la semana quieres entrenar?</legend>

@@ -1,5 +1,5 @@
 // Service worker: recibe los avisos push y deja la app disponible sin conexión.
-const CACHE = 'gym-hombre-v1';
+const CACHE = 'gym-hombre-v2';
 const CORE = ['/', '/index.html', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png'];
 
 self.addEventListener('install', e => {

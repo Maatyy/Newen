@@ -120,7 +120,7 @@
   renderHabits();
 
   // ---------- Programa de 12 semanas ----------
-  const PHASES = [
+  const BASE_PHASES = [
     { weeks: 'Semanas 1 a 4', title: 'Fase 1: Aprende la técnica', desc: 'Movimientos básicos y guiados. Elige un peso con el que te sobren unas 3 repeticiones al final de cada serie.' },
     { weeks: 'Semanas 5 a 8', title: 'Fase 2: Construye fuerza', desc: 'Los ejercicios principales se mantienen, con más peso y menos repeticiones. Algunos complementarios cambian para trabajar el músculo desde otro ángulo.' },
     { weeks: 'Semanas 9 a 12', title: 'Fase 3: Sube de nivel', desc: 'Variantes un poco más desafiantes de los mismos movimientos. Te deben sobrar 1 a 2 repeticiones con buena técnica.' }
@@ -331,6 +331,159 @@
   };
   const MAX_GOALS = 3, MAX_EXTRAS = 3;
 
+  // ---------- Con experiencia: rutina recomendada o la propia ----------
+  // [consejo, rol]: main = básicos pesados, acc = complementarios, core = abdomen
+  const EXLIB = {
+    'Press de banca con barra': ['Escápulas juntas y pies firmes; baja la barra a la mitad del pecho con control.', 'main'],
+    'Remo con barra': ['Torso inclinado unos 45°, espalda neutra; lleva la barra al ombligo.', 'main'],
+    'Press de hombros con mancuernas, sentado': ['Espalda apoyada; sube sin arquear la zona lumbar.', 'main'],
+    'Jalón al pecho en polea': ['Barra a la parte alta del pecho, codos hacia abajo; sin balancearte.', 'acc'],
+    'Curl de bíceps con barra': ['Codos pegados al cuerpo; sin balancear el torso.', 'acc'],
+    'Curl de bíceps con mancuernas': ['Codos pegados al cuerpo; sube y baja lento.', 'acc'],
+    'Extensión de tríceps en polea': ['Codos fijos a los lados; estira el brazo completo.', 'acc'],
+    'Sentadilla con barra': ['Barra en la espalda alta; baja hasta la paralela o lo que tu movilidad permita, con la espalda neutra.', 'main'],
+    'Peso muerto rumano con barra': ['Rodillas apenas flexionadas; cadera atrás y barra pegada a las piernas.', 'main'],
+    'Prensa de piernas': ['Pies al ancho de caderas; no bloquees las rodillas al estirar.', 'acc'],
+    'Curl femoral en máquina': ['Movimiento controlado; baja lento en 2 segundos.', 'acc'],
+    'Elevación de talones (pantorrilla)': ['Sube lo más alto que puedas, pausa y baja hasta estirar.', 'acc'],
+    'Plancha frontal': ['Cuerpo en línea recta; aprieta abdomen y glúteos.', 'core'],
+    'Press inclinado con mancuernas': ['Banco a unos 30°; baja las mancuernas a la altura del pecho.', 'main'],
+    'Dominadas (o asistidas en máquina)': ['Agarre algo más ancho que los hombros; sube hasta pasar la barbilla.', 'main'],
+    'Remo sentado en polea': ['Pecho alto; junta las escápulas al tirar hacia el ombligo.', 'acc'],
+    'Elevaciones laterales con mancuernas': ['Sube hasta la altura de los hombros, codos apenas flexionados.', 'acc'],
+    'Fondos en paralelas (o asistidos)': ['Torso un poco inclinado; baja hasta que los codos queden a 90°.', 'acc'],
+    'Curl martillo con mancuernas': ['Palmas mirándose; sube sin mover los codos.', 'acc'],
+    'Peso muerto convencional': ['Barra sobre la mitad del pie, espalda neutra; empuja el suelo con las piernas.', 'main'],
+    'Sentadilla búlgara con mancuernas': ['Pie de atrás en el banco; baja recto, controlando.', 'acc'],
+    'Hip thrust con barra': ['Espalda alta en el banco; aprieta los glúteos arriba 1 segundo.', 'acc'],
+    'Extensión de cuádriceps en máquina': ['Estira la pierna sin bloquear la rodilla y baja lento.', 'acc'],
+    'Rueda abdominal': ['Desde rodillas; avanza solo hasta donde mantengas la espalda baja neutra.', 'core'],
+    'Zancada con mancuernas': ['Paso largo; baja recto con el torso erguido.', 'acc'],
+    'Face pull en polea': ['Polea a la altura de la cara; tira abriendo los codos.', 'acc'],
+    'Aperturas en máquina (pec deck)': ['Codos apenas flexionados; junta las manos al frente con control.', 'acc'],
+    'Encogimientos con mancuernas': ['Sube los hombros hacia las orejas, pausa y baja lento.', 'acc']
+  };
+  const TPL = {
+    torsoA: ['Press de banca con barra', 'Remo con barra', 'Press de hombros con mancuernas, sentado', 'Jalón al pecho en polea', 'Curl de bíceps con barra', 'Extensión de tríceps en polea'],
+    piernaA: ['Sentadilla con barra', 'Peso muerto rumano con barra', 'Prensa de piernas', 'Curl femoral en máquina', 'Elevación de talones (pantorrilla)', 'Plancha frontal'],
+    torsoB: ['Press inclinado con mancuernas', 'Dominadas (o asistidas en máquina)', 'Remo sentado en polea', 'Elevaciones laterales con mancuernas', 'Fondos en paralelas (o asistidos)', 'Curl martillo con mancuernas'],
+    piernaB: ['Peso muerto convencional', 'Sentadilla búlgara con mancuernas', 'Hip thrust con barra', 'Extensión de cuádriceps en máquina', 'Elevación de talones (pantorrilla)', 'Rueda abdominal'],
+    fullA: ['Sentadilla con barra', 'Press de banca con barra', 'Remo con barra', 'Curl femoral en máquina', 'Plancha frontal'],
+    fullB: ['Peso muerto convencional', 'Press de hombros con mancuernas, sentado', 'Jalón al pecho en polea', 'Zancada con mancuernas', 'Rueda abdominal'],
+    fullC: ['Prensa de piernas', 'Press inclinado con mancuernas', 'Remo sentado en polea', 'Elevaciones laterales con mancuernas', 'Curl de bíceps con barra', 'Extensión de tríceps en polea'],
+    empuje: ['Press de banca con barra', 'Press de hombros con mancuernas, sentado', 'Press inclinado con mancuernas', 'Elevaciones laterales con mancuernas', 'Extensión de tríceps en polea', 'Fondos en paralelas (o asistidos)'],
+    tiron: ['Peso muerto convencional', 'Dominadas (o asistidas en máquina)', 'Remo con barra', 'Face pull en polea', 'Curl de bíceps con barra', 'Curl martillo con mancuernas'],
+    tironB: ['Remo con barra', 'Jalón al pecho en polea', 'Remo sentado en polea', 'Face pull en polea', 'Curl de bíceps con mancuernas', 'Encogimientos con mancuernas'],
+    pierna: ['Sentadilla con barra', 'Peso muerto rumano con barra', 'Prensa de piernas', 'Curl femoral en máquina', 'Elevación de talones (pantorrilla)', 'Rueda abdominal'],
+    pecho: ['Press de banca con barra', 'Press inclinado con mancuernas', 'Aperturas en máquina (pec deck)', 'Fondos en paralelas (o asistidos)', 'Extensión de tríceps en polea'],
+    espalda: ['Dominadas (o asistidas en máquina)', 'Remo con barra', 'Jalón al pecho en polea', 'Remo sentado en polea', 'Curl de bíceps con barra'],
+    hombro: ['Press de hombros con mancuernas, sentado', 'Elevaciones laterales con mancuernas', 'Face pull en polea', 'Encogimientos con mancuernas', 'Plancha frontal'],
+    brazos: ['Curl de bíceps con barra', 'Extensión de tríceps en polea', 'Curl martillo con mancuernas', 'Fondos en paralelas (o asistidos)', 'Curl de bíceps con mancuernas']
+  };
+  // [nombre, descripción, tipo] — el tipo decide qué extras de tus objetivos se suman ese día
+  const DAYN = {
+    torsoA: ['Torso A', 'Pecho, espalda, hombros y brazos, con los básicos pesados.', 'up'], torsoB: ['Torso B', 'Pecho, espalda y hombros desde otros ángulos.', 'up'],
+    piernaA: ['Pierna A', 'Cuádriceps, femorales y core, empezando por la sentadilla.', 'low'], piernaB: ['Pierna B', 'Cadena posterior y glúteos, empezando por el peso muerto.', 'low'],
+    fullA: ['Cuerpo completo A', 'Sentadilla, press de banca y remo.', 'full'], fullB: ['Cuerpo completo B', 'Peso muerto, press de hombros y jalón.', 'full'], fullC: ['Cuerpo completo C', 'Prensa, press inclinado, remo y brazos.', 'full'],
+    empuje: ['Empuje', 'Pecho, hombros y tríceps.', 'up'], tiron: ['Tirón', 'Espalda, bíceps y parte de atrás del hombro.', 'up'], tironB: ['Tirón B', 'Espalda y bíceps, sin peso muerto.', 'up'],
+    pierna: ['Pierna', 'Cuádriceps, femorales, pantorrillas y core.', 'low'],
+    pecho: ['Pecho', 'Pecho y tríceps.', 'up'], espalda: ['Espalda', 'Espalda y bíceps.', 'up'], hombro: ['Hombros', 'Hombros y core.', 'up'], brazos: ['Brazos', 'Bíceps y tríceps.', 'up']
+  };
+  const EXTRA_OF = { low: 0, up: 1, full: 2 };
+  const REC_SPLIT = { 1: ['fullA'], 2: ['fullA', 'fullB'], 3: ['fullA', 'fullB', 'fullC'], 4: ['torsoA', 'piernaA', 'torsoB', 'piernaB'], 5: ['torsoA', 'piernaA', 'empuje', 'tiron', 'pierna'], 6: ['empuje', 'tiron', 'pierna', 'empuje', 'tironB', 'piernaB'] };
+  const REC_TXT = { 1: 'cuerpo completo', 2: 'cuerpo completo A/B', 3: 'cuerpo completo A/B/C', 4: 'torso / pierna, 2 veces cada uno', 5: 'torso / pierna + empuje / tirón / pierna', 6: 'empuje / tirón / pierna, 2 veces' };
+  const MINE_CYCLE = { full: ['fullA', 'fullB', 'fullC'], tp: ['torsoA', 'piernaA', 'torsoB', 'piernaB'], ppl: ['empuje', 'tiron', 'pierna'], weider: ['pecho', 'espalda', 'pierna', 'hombro', 'brazos'] };
+  const SPLIT_TXT = { full: 'cuerpo completo', tp: 'torso y pierna', ppl: 'empuje, tirón y pierna', weider: 'un grupo muscular por día', otro: 'sin un plan fijo' };
+  const EXP_PHASES = [
+    { weeks: 'Semanas 1 a 4', title: 'Fase 1: Volumen', desc: 'Más repeticiones (8 a 12) con cargas medias para sumar trabajo. Termina cada serie con 1 a 2 reps en reserva.' },
+    { weeks: 'Semanas 5 a 8', title: 'Fase 2: Fuerza', desc: 'Menos repeticiones (5 a 6) y más peso en los básicos. Descansa 2 a 3 minutos entre series pesadas.' },
+    { weeks: 'Semanas 9 a 12', title: 'Fase 3: Intensificación', desc: 'Series pesadas de 3 a 6 reps en los básicos. Al terminar, haz una semana más liviana (descarga) y repite el ciclo con más peso.' }
+  ];
+  const MINE_PHASE = { weeks: 'Semanas 1 a 12', title: 'Tu rutina: a tu manera', desc: 'Sigues tu propia rutina. Anota tus pesos: cuando logres todas las reps 2 veces seguidas, la app te avisa que subas.' };
+  function phs() { const pg = progOf(); return pg === 'exp' ? EXP_PHASES : pg === 'mine' ? [MINE_PHASE, MINE_PHASE, MINE_PHASE] : BASE_PHASES; }
+  // base = programa de 12 semanas (principiantes) · exp = recomendada para quien ya entrena · mine = su propia rutina
+  function progOf() {
+    if (!profile || profile.exp === 'nunca' || !profile.expTime) return 'base';
+    if (profile.routineChoice === 'mine') return 'mine';
+    return profile.expTime === 'lt6' ? 'base' : 'exp';
+  }
+  // Con algo de experiencia en el programa base, se salta la fase de técnica
+  const skipW = () => (profile && profile.exp !== 'nunca' && profile.expTime && progOf() === 'base' ? 4 : 0);
+  function scheme(role, p, lvl, name) {
+    if (role === 'core') return ['3 series', /^plancha/i.test(name) ? ['30–45 s', '45 s', '45–60 s'][p] : ['10 reps', '12 reps', '12–15 reps'][p], '60 s'];
+    if (role === 'main') return [['4 series', '8–10 reps', '2 min'], ['4 series', '5–6 reps', '2–3 min'], [lvl === 'gt12' ? '5 series' : '4 series', lvl === 'gt12' ? '3–5 reps' : '4–6 reps', '3 min']][p];
+    return [['3 series', '12 reps', '75 s'], ['3 series', '10 reps', '90 s'], ['3 series', '8–10 reps', '90 s']][p];
+  }
+  function mkEx(name, p, lvl, mine) {
+    const L = EXLIB[name] || ['', 'acc'];
+    const s = mine ? (L[1] === 'main' ? ['4 series', '8 reps', '2 min'] : L[1] === 'core' ? scheme('core', 0, lvl, name) : ['3 series', '10–12 reps', '75 s']) : scheme(L[1], p, lvl, name);
+    return { name, tip: L[0], series: s[0], reps: s[1], rest: s[2] };
+  }
+  const estTime = ex => { const m = ex.reduce((a, e) => a + (EXLIB[e.name] && EXLIB[e.name][1] === 'main' ? 12 : 8), 5); return (Math.round(m / 5) * 5) + ' min'; };
+  function expDays() {
+    const p = phaseOf(week), lvl = profile.expTime;
+    return (REC_SPLIT[freqOf()] || REC_SPLIT[3]).map((k, n) => {
+      const ex = TPL[k].map(x => mkEx(x, p, lvl));
+      return { num: 'Día ' + (n + 1), name: DAYN[k][0], desc: DAYN[k][1], time: estTime(ex), fixed: ex, extras: [EXTRA_OF[DAYN[k][2]]] };
+    });
+  }
+  const cleanTxt = (s, n) => String(s || '').replace(/[<>"'`&\\]/g, '').replace(/\s+/g, ' ').trim().slice(0, n);
+  function mineRoutine() {
+    const f = freqOf(), sp = (profile && profile.split) || 'otro';
+    let r = store.get('myRoutine');
+    if (!r || r.freq !== f || r.split !== sp || !Array.isArray(r.days) || r.days.length !== f) {
+      const cyc = MINE_CYCLE[sp];
+      const keys = cyc ? Array.from({ length: f }, (_, i) => cyc[i % cyc.length]) : REC_SPLIT[f];
+      r = { split: sp, freq: f, days: keys.map(k => ({ name: DAYN[k][0], key: k, ex: TPL[k].map(x => mkEx(x, 0, '', true)) })) };
+      store.set('myRoutine', r);
+    }
+    // Datos guardados: se limpian por si el respaldo fue editado a mano
+    r.days.forEach(d => { d.name = cleanTxt(d.name, 30) || 'Mi día'; d.ex = (Array.isArray(d.ex) ? d.ex : []).slice(0, 15).map(e => ({ name: cleanTxt(e.name, 60) || 'Ejercicio', tip: cleanTxt(e.tip, 160), series: cleanTxt(e.series, 12) || '3 series', reps: cleanTxt(e.reps, 14) || '10 reps', rest: cleanTxt(e.rest, 10) || '75 s' })); });
+    return r;
+  }
+  function mineDays() {
+    return mineRoutine().days.map((d, n) => ({ num: 'Día ' + (n + 1), name: d.name, desc: 'Tu propia rutina. Toca ✏️ Editar para cambiar ejercicios.', time: estTime(d.ex), fixed: d.ex, extras: [], mine: n }));
+  }
+  function adviceFor(sp, f) {
+    if (sp === 'weider') return 'Hoy entrenas cada músculo 1 vez por semana. Con 2 veces por semana, como en la recomendada, se suele ganar más músculo con el mismo tiempo.';
+    if (sp === 'otro') return 'Entrenar sin un plan fijo hace difícil progresar. Seguir una rutina y anotar tus pesos es lo que más se nota.';
+    if (sp === 'full' && f >= 5) return 'Cuerpo completo 5 o más días deja poco descanso a cada músculo. Dividir el cuerpo te deja recuperar mejor.';
+    if (sp === 'ppl' && f <= 3) return `Con ${f} día${f > 1 ? 's' : ''}, empuje/tirón/pierna entrena cada músculo 1 vez por semana. Cuerpo completo te da el doble de estímulo.`;
+    if (sp === 'tp' && f <= 3) return `Con ${f} día${f > 1 ? 's' : ''}, torso/pierna queda corto o desbalanceado. Cuerpo completo reparte mejor el trabajo.`;
+    return 'Tu forma de entrenar calza bien con tus días. 👍 La recomendada suma progresión por fases y pesos sugeridos.';
+  }
+  function expBlock() {
+    if (!profile || profile.exp === 'nunca' || !profile.expTime) return '';
+    const f = freqOf(), pg = progOf(), lvl = profile.expTime, base = lvl === 'lt6';
+    const rec = base
+      ? `Como llevas menos de 6 meses, te recomendamos el <b>programa de 12 semanas desde la fase 2</b>: te saltas la fase de técnica y vas directo a construir fuerza.`
+      : `Para ${f} día${f > 1 ? 's' : ''} por semana te recomendamos <b>${REC_TXT[f]}</b>, con fases de 4 semanas: volumen, fuerza e intensificación. Cada músculo trabaja ${f >= 2 ? '2 veces' : '1 vez'} por semana.`;
+    const L = profile.lifts || {}, nL = Object.values(L).filter(v => v > 0).length;
+    return `<div class="exp-block"><h4>🏋️ Tu recomendación</h4>
+      <p>Hoy entrenas con <b>${SPLIT_TXT[profile.split] || SPLIT_TXT.otro}</b>.</p>
+      <p class="exp-tip">💡 ${adviceFor(profile.split, f)}</p>
+      <p>${rec}</p>
+      ${nL ? `<p>🎯 Usamos tus ${nL} peso${nL > 1 ? 's' : ''} de referencia para sugerirte con cuánto partir.</p>` : ''}
+      <div class="choice" role="group" aria-label="Qué rutina seguir">
+        <button type="button" class="choice-btn" data-choice="rec" aria-pressed="${pg !== 'mine'}">⭐ Usar la recomendada</button>
+        <button type="button" class="choice-btn" data-choice="mine" aria-pressed="${pg === 'mine'}">Seguir con mi rutina</button>
+      </div>
+      ${pg === 'mine' ? `<p>Cargamos una rutina de ${SPLIT_TXT[profile.split] || 'tus días'} con ejercicios típicos. Cámbiala a tu gusto en la pestaña <b>Rutina → ✏️ Editar este día</b>.</p>` : ''}
+    </div>`;
+  }
+  // Pesos de referencia del perfil → peso sugerido la primera vez
+  const LIFT_OF = [[/^sentadilla con barra|^sentadilla en máquina smith/i, 'sq', 1], [/^press de banca/i, 'bp', 1], [/^remo con barra/i, 'row', 1], [/^peso muerto convencional/i, 'dl', 1], [/^peso muerto rumano con barra/i, 'dl', .7], [/^press de hombros con mancuernas/i, 'ohp', 1]];
+  function seedKg(name) {
+    const L = profile && profile.exp !== 'nunca' && profile.lifts;
+    if (!L) return 0;
+    for (const [re, k, f] of LIFT_OF) if (re.test(name) && L[k] > 0) {
+      const ph = progOf() === 'exp' && EXLIB[name] && EXLIB[name][1] === 'main' ? [1, 1.07, 1.12][phaseOf(week)] : 1;
+      const kg = L[k] * f * ph;
+      return k === 'ohp' ? Math.round(kg * 2) / 2 : Math.round(kg / 2.5) * 2.5;
+    }
+    return 0;
+  }
+
   let profile = store.get('profile');
   if (profile && !profile.goals && profile.goal) profile.goals = [profile.goal];
   // Calendario: todo se calcula con la fecha local del dispositivo (su zona horaria).
@@ -384,6 +537,8 @@
     }
   };
   function planDays() {
+    if (mode === 'gym' && progOf() === 'exp') return expDays();
+    if (mode === 'gym' && progOf() === 'mine') return mineDays();
     const base = mode === 'casa' ? homeDays : days, f = freqOf(), R = PLAN_REFS[mode];
     const mk = (r, n) => ({ num: 'Día ' + n, name: r.name, desc: r.desc, time: r.time, slots: r.refs.map(([a, b]) => base[a].slots[b]), extras: r.extras });
     if (f === 1) return [mk(R[1], 1)];
@@ -394,7 +549,7 @@
   const parseISO = s => { const [y, m, d] = s.split('-').map(Number); return Date.UTC(y, m - 1, d); };
   const mondayOf = s => { const t = parseISO(s); return t - ((new Date(t).getUTCDay() + 6) % 7) * 864e5; };
   const daysSinceStart = () => (start ? Math.round((parseISO(today) - parseISO(start)) / 864e5) : 0);
-  const weeksRaw = () => (start ? Math.floor((mondayOf(today) - mondayOf(start)) / (7 * 864e5)) + 1 : 1);
+  const weeksRaw = () => (start ? Math.floor((mondayOf(today) - mondayOf(start)) / (7 * 864e5)) + 1 : 1) + skipW();
   const notYet = () => !!start && daysSinceStart() < 0;
   const autoWeek = () => Math.min(12, Math.max(1, weeksRaw()));
   const todayIdx = () => SCHEDULES[schedule].days.indexOf(new Date().getDay());
@@ -460,7 +615,7 @@
     const feel = (store.get('feel') || {})[today];
     const soft = feel === 'baja' || pregWeekNow() >= 28;
     const beginner = profile && profile.exp === 'nunca' && week <= 2;
-    const ex = d.slots.map(s => {
+    const ex = d.fixed ? d.fixed.map(e => Object.assign({}, e, { tag: '' })) : d.slots.map(s => {
       const v = pickV(s[p]);
       return {
         name: v[0], tip: v[1], series: beginner && v[2] === '3 series' ? '2 series' : v[2], reps: v[3], rest: v[4],
@@ -471,6 +626,8 @@
     let added = 0;
     ((profile && profile.goals) || []).forEach(g => d.extras.flatMap(ei => (GOALS[g] && GOALS[g].extras[ei]) || []).forEach(x => {
       const y = mode === 'casa' && HOME_SWAP[x[0]] ? pickV(HOME_SWAP[x[0]]) : x;
+      // En la rutina para quienes ya entrenan solo se suma cardio y core: el resto ya está cubierto
+      if (d.fixed && !/^(Cardio|Pallof|Plancha|Movilidad)/.test(y[0])) return;
       if (added >= MAX_EXTRAS || seen.has(y[0])) return;
       seen.add(y[0]); added++;
       ex.push({ name: y[0], tip: y[1], series: y[2], reps: y[3], rest: y[4], tag: 'extra' });
@@ -478,10 +635,11 @@
     ex.sort((a, b) => (a.name.startsWith('Cardio final') ? 1 : 0) - (b.name.startsWith('Cardio final') ? 1 : 0));
     // Versión suave: una serie menos en cada ejercicio (sin bajar de 2)
     if (soft) ex.forEach(e => { const m = /^(\d+) series/.exec(e.series || ''); if (m && +m[1] >= 3) e.series = (m[1] - 1) + ' series'; });
-    let out = fitTime(adapt(ex));
+    // Rutina propia: se respeta tal cual (sin recortes ni cambios automáticos)
+    let out = d.mine !== undefined ? ex : fitTime(adapt(ex));
     if (profile && profile.stage === 'posparto')
       out = [{ name: 'Suelo pélvico', tip: 'Aprieta como si aguantaras el pipí durante 3 a 5 segundos y suelta otros 5. Sin aguantar el aire.', series: '2 series', reps: '10 reps', rest: '30 s', tag: 'adapt' }].concat(out);
-    const time = profile && profile.time === '30' ? '30 min' : profile && profile.time === '45' ? '45 min' : d.time;
+    const time = d.mine !== undefined ? d.time : profile && profile.time === '30' ? '30 min' : profile && profile.time === '45' ? '45 min' : d.time;
     return Object.assign({}, d, { ex: out, time });
   }
 
@@ -507,13 +665,13 @@
     if (start) {
       phaseDetails.hidden = !phaseOpen; phaseMini.hidden = phaseOpen; collapseBtn.hidden = false;
       phaseMiniTitle.textContent = notYet() ? 'Semana 1 de 12' : weeksRaw() > 12 ? 'Programa completado 🎉' : `Semana ${aw} de 12`;
-      phaseMiniText.textContent = PHASES[phaseOf(aw)].title;
+      phaseMiniText.textContent = phs()[phaseOf(aw)].title;
     } else { phaseDetails.hidden = false; phaseMini.hidden = true; collapseBtn.hidden = true; }
     prevBtn.disabled = week <= 1;
     nextBtn.disabled = week >= 12;
     backBtn.hidden = !start || week === aw;
     restartBtn.hidden = !start;
-    weekDots.innerHTML = PHASES.map((ph, k) => `
+    weekDots.innerHTML = phs().map((ph, k) => `
       <div class="phase-seg${k === p ? ' active' : ''}">
         <div class="bars">${[1, 2, 3, 4].map(n => {
           const w = k * 4 + n;
@@ -521,8 +679,8 @@
         }).join('')}</div>
         <small>Fase ${k + 1}</small>
       </div>`).join('');
-    phaseTitle.textContent = PHASES[p].title;
-    phaseDesc.textContent = PHASES[p].weeks + '. ' + PHASES[p].desc + (weeksRaw() > 12 && week === 12 ? ' Para seguir, repite la fase 3 con más peso o empieza de nuevo; es un buen momento para pedirle a un entrenador del gym que revise tu técnica.' : '');
+    phaseTitle.textContent = phs()[p].title;
+    phaseDesc.textContent = phs()[p].weeks + '. ' + phs()[p].desc + (weeksRaw() > 12 && week === 12 ? ' Para seguir, repite la fase 3 con más peso o empieza de nuevo; es un buen momento para pedirle a un entrenador del gym que revise tu técnica.' : '');
   }
   function goWeek(w) { week = Math.min(12, Math.max(1, w)); renderPhase(); renderDay(current); }
   prevBtn.addEventListener('click', () => goWeek(week - 1));
@@ -645,7 +803,7 @@
   const tabsEl = document.querySelector('.tabs');
   let tabs = [];
   const checkSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
-  const dkey = i => (mode === 'casa' ? 'casa-' : '') + (freqOf() !== 3 ? 'f' + freqOf() + '-' : '') + week + '-' + i;
+  const dkey = i => (mode === 'casa' ? 'casa-' : (progOf() !== 'base' ? progOf() + '-' : '')) + (freqOf() !== 3 ? 'f' + freqOf() + '-' : '') + week + '-' + i;
   const key = () => dkey(current);
   // Las marcas se guardan por nombre del ejercicio, así no se mueven si la lista cambia.
   // Si vienen en el formato antiguo (por posición), se convierten una sola vez.
@@ -676,21 +834,32 @@
       <ol class="ex-list">
         ${d.ex.map((e, j) => { const pt = exPattern(e.name), wl = wCan(e.name, pt), sg = wl ? wSuggest(e.name) : null; return `
           <li class="ex${done[j] ? ' done' : ''}">
-            <button class="ex-btn" type="button" data-j="${j}" aria-pressed="${!!done[j]}" aria-label="Marcar ${e.name} como hecho">${checkSvg}</button>
+            ${myEditing && d.mine !== undefined ? `<button class="ex-rm" type="button" data-myrm="${j}" aria-label="Quitar ${e.name}">✕</button>` : `<button class="ex-btn" type="button" data-j="${j}" aria-pressed="${!!done[j]}" aria-label="Marcar ${e.name} como hecho">${checkSvg}</button>`}
             <button class="ex-fig" type="button" data-open="${j}" aria-label="Ver cómo se hace ${e.name}">${figSVG(pt, e.name)}</button>
             <div class="ex-body">
               <button class="ex-name ex-link" type="button" data-open="${j}">${e.name}${e.tag === 'extra' ? '<span class="goal-tag">✦ Extra</span>' : e.tag === 'new' ? '<span class="goal-tag new">Nuevo</span>' : e.tag === 'adapt' ? '<span class="goal-tag adapt">🩹 Adaptado</span>' : ''}</button>
               <div class="ex-stats">
                 <span class="stat"><b>${e.series.replace(' series', '')}</b> × <b>${e.reps}</b></span>
                 ${e.rest && e.rest !== '—' ? `<span class="stat rest">⏳ <b>${e.rest}</b></span>` : ''}
-                ${wl ? `<button class="stat wchip${sg && sg.up ? ' up' : ''}" type="button" data-open="${j}">${sg && sg.last ? (sg.up ? '⬆ ' + fmtKg(sg.next) : '🏋️ ' + fmtKg(sg.last.kg)) : '＋ Peso'}</button>` : ''}
+                ${wl ? `<button class="stat wchip${sg && sg.up ? ' up' : ''}" type="button" data-open="${j}">${sg && sg.last ? (sg.up ? '⬆ ' + fmtKg(sg.next) : '🏋️ ' + fmtKg(sg.last.kg)) : sg && sg.seed ? '🎯 ' + fmtKg(sg.seed) : '＋ Peso'}</button>` : ''}
               </div>
             </div>
           </li>`; }).join('')}
       </ol>
+      ${myEditing && d.mine !== undefined ? `<div class="my-edit">
+        <label class="field"><span>Nombre del día</span><input id="myDayName" value="${d.name}" maxlength="30"></label>
+        <label class="field"><span>Agregar ejercicio</span><input id="myExName" list="exCatalog" maxlength="60" placeholder="Busca o escribe un ejercicio"></label>
+        <div class="my-row">
+          <select id="myExSeries" aria-label="Series"><option value="2 series">2 series</option><option value="3 series" selected>3 series</option><option value="4 series">4 series</option><option value="5 series">5 series</option></select>
+          <input id="myExReps" value="10 reps" maxlength="14" aria-label="Repeticiones">
+          <button class="btn btn-primary" type="button" data-myadd>Agregar</button>
+        </div>
+        <div class="sum-actions"><button class="btn btn-ghost" type="button" data-myedit="0">✓ Listo</button><button class="reset" type="button" data-myreset>Volver a la versión original del día</button></div>
+      </div>` : ''}
       <div class="day-foot">
         <span><b>${count}/${d.ex.length}</b> listos</span>
         <span class="celebrate">¡Sesión lista! ✨</span>
+        ${d.mine !== undefined && !myEditing ? '<button class="reset" type="button" data-myedit="1">✏️ Editar este día</button>' : ''}
         <button class="reset" type="button" data-reset>Reiniciar día</button>
       </div>`;
     renderHoy();
@@ -720,6 +889,48 @@
     }
   });
 
+  // ---------- Editor de la rutina propia ----------
+  let myEditing = false;
+  function saveMine(fn) {
+    const r = mineRoutine(), d = r.days[current]; if (!d) return;
+    fn(d, r); store.set('myRoutine', r);
+    if (window.__rw && window.__rw.sync) window.__rw.sync();
+    renderDay(current);
+  }
+  panel.addEventListener('click', (ev) => {
+    const ed = ev.target.closest('[data-myedit]');
+    if (ed) { myEditing = ed.dataset.myedit === '1'; renderDay(current); if (myEditing) { const n = document.getElementById('myExName'); if (n) n.scrollIntoView({ behavior: 'smooth', block: 'center' }); } return; }
+    const rm = ev.target.closest('[data-myrm]');
+    if (rm) { const name = buildDay(current).ex[+rm.dataset.myrm].name; saveMine(d => { if (d.ex.length > 1) d.ex = d.ex.filter(e => e.name !== name); else toast('Deja al menos un ejercicio'); }); return; }
+    if (ev.target.closest('[data-myadd]')) {
+      const name = cleanTxt(document.getElementById('myExName').value, 60);
+      if (!name) { toast('Escribe o elige un ejercicio'); document.getElementById('myExName').focus(); return; }
+      const series = document.getElementById('myExSeries').value, reps = cleanTxt(document.getElementById('myExReps').value, 14) || '10 reps';
+      saveMine(d => {
+        if (d.ex.some(e => e.name.toLowerCase() === name.toLowerCase())) { toast('Ese ejercicio ya está en el día'); return; }
+        if (d.ex.length >= 15) { toast('Máximo 15 ejercicios por día'); return; }
+        const L = EXLIB[name];
+        d.ex.push({ name, tip: L ? L[0] : '', series, reps: /\d$/.test(reps) ? reps + ' reps' : reps, rest: L && L[1] === 'main' ? '2 min' : '75 s' });
+        toast('✓ Agregado: ' + name);
+      });
+      return;
+    }
+    if (ev.target.closest('[data-myreset]')) {
+      saveMine(d => { const k = d.key || (REC_SPLIT[freqOf()] || [])[current]; if (k && TPL[k]) { d.ex = TPL[k].map(x => mkEx(x, 0, '', true)); d.name = DAYN[k][0]; } });
+      toast('Día restablecido');
+    }
+  });
+  panel.addEventListener('change', (ev) => {
+    if (ev.target.id === 'myDayName') { const v = cleanTxt(ev.target.value, 30); if (v) saveMine(d => { d.name = v; }); }
+  });
+  // Lista de ejercicios para buscar al agregar
+  (function () {
+    const dl = document.getElementById('exCatalog'); if (!dl) return;
+    const names = new Set(Object.keys(EXLIB));
+    days.forEach(d => d.slots.forEach(s => s.forEach(v => names.add(v[0]))));
+    dl.innerHTML = [...names].sort((a, b) => a.localeCompare(b, 'es')).map(n => `<option value="${esc(n)}"></option>`).join('');
+  })();
+
   const modeBtns = Array.from(document.querySelectorAll('.mode-btn'));
   const homeNote = document.getElementById('homeNote');
   function renderMode() {
@@ -729,6 +940,7 @@
       const txt = eq.length ? 'Rutina con ' + eq.map(e => (e === 'db' ? 'mancuernas' : 'bandas elásticas')).join(' y ') : 'Rutina solo con tu peso corporal';
       homeNote.innerHTML = `${txt}. Puedes cambiar tu equipo en <a href="#perfil">tu perfil</a>. Necesitas una colchoneta o toalla, una silla firme y espacio para moverte.`;
       homeNote.hidden = false;
+      if (progOf() !== 'base') homeNote.innerHTML += ' En casa usamos la rutina base; tu rutina de gym sigue intacta.';
     } else homeNote.hidden = true;
   }
   modeBtns.forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; store.set('trainMode', mode); renderMode(); renderDay(current); }));
@@ -833,9 +1045,10 @@
         <div class="plan-goal-block">
           <h4><span aria-hidden="true">${GOALS[g].emoji}</span> ${GOALS[g].label}</h4>
           <p>${GOALS[g].summary}</p>
-          <ul class="plan-list">${GOALS[g].points.map(pt => `<li>${pt}</li>`).join('')}</ul>
+          <ul class="plan-list">${GOALS[g].points.filter(pt => progOf() === 'base' || !/^Sumamos/.test(pt)).map(pt => `<li>${pt}</li>`).join('')}</ul>
         </div>`).join('')}
-      <p class="plan-note">Entrenas <b>${freqOf()} días por semana</b> y tu rutina avanza en 3 fases de 4 semanas. ${start && !notYet() ? `Ahora estás en la <b>semana ${autoWeek()}</b>: ${PHASES[phaseOf(autoWeek())].title.split(': ')[1].toLowerCase()}.` : 'Elige tu fecha de inicio en la sección de rutina y las semanas avanzarán solas.'}</p>
+      ${expBlock()}
+      <p class="plan-note">Entrenas <b>${freqOf()} días por semana</b> y tu rutina avanza en 3 fases de 4 semanas. ${start && !notYet() ? `Ahora estás en la <b>semana ${autoWeek()}</b>: ${phs()[phaseOf(autoWeek())].title.split(': ')[1].toLowerCase()}.` : 'Elige tu fecha de inicio en la sección de rutina y las semanas avanzarán solas.'}</p>
       ${(profile.parq || []).length ? '<div class="plan-alert">⚠️ <b>Antes de empezar, habla con tu médico.</b> Marcaste ' + profile.parq.length + ' respuesta' + (profile.parq.length > 1 ? 's' : '') + ' en “Tu salud”. Cuéntale qué marcaste y pregúntale qué tipo de ejercicio te conviene. Mientras tanto, empieza muy suave.</div>' : ''}
       ${(() => {
         // Primero lo de seguridad; se ven 3 notas y el resto queda plegado
@@ -899,6 +1112,9 @@
     const el = document.getElementById(id);
     if (el) setTimeout(() => { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
   }
+  const expBox = document.getElementById('expBox');
+  const updateExpBox = () => { expBox.hidden = ((form.querySelector('input[name="exp"]:checked') || {}).value || 'nunca') === 'nunca'; };
+  form.addEventListener('change', (ev) => { if (ev.target.name === 'exp') updateExpBox(); });
   form.addEventListener('change', (ev) => { if (ev.target.name === 'freq') { updateFreqNote(); renderProfSched(); } if (ev.target.name === 'stage' || ev.target.name === 'cycTrack') updateCondFields(); });
   function updateCondFields() {
     const st = (form.querySelector('input[name="stage"]:checked') || {}).value || 'ninguna';
@@ -1019,6 +1235,10 @@
     const ps = form.querySelector(`input[name="psched"][value="${schedule}"]`); if (ps) ps.checked = true;
     const exp = form.querySelector(`input[name="exp"][value="${profile.exp}"]`);
     if (exp) exp.checked = true;
+    setR('expTime', profile.expTime || 'lt6'); setR('split', profile.split || 'otro');
+    const lf = profile.lifts || {};
+    [['lSq', 'sq'], ['lBp', 'bp'], ['lRow', 'row'], ['lDl', 'dl'], ['lOhp', 'ohp']].forEach(([id, k]) => { document.getElementById(id).value = lf[k] || ''; });
+    updateExpBox();
     goalBoxes.forEach(b => { b.checked = (profile.goals || []).includes(b.value); });
     updateGoalLimits();
   }
@@ -1045,6 +1265,12 @@
       stage: radioVal('stage', 'ninguna'), sleep: radioVal('sleep', 'bien'), stress: radioVal('stress', 'bajo'),
       pain: checkVals('pain'), parq: checkVals('parq')
     };
+    if (profile.exp !== 'nunca') {
+      const kg = id => { const v = parseFloat(document.getElementById(id).value); return v > 0 && v <= 450 ? Math.round(v * 2) / 2 : 0; };
+      profile.expTime = radioVal('expTime', 'lt6'); profile.split = radioVal('split', 'otro');
+      profile.lifts = { sq: kg('lSq'), bp: kg('lBp'), row: kg('lRow'), dl: kg('lDl'), ohp: kg('lOhp') };
+      const pv = store.get('profile'); profile.routineChoice = (pv && pv.routineChoice) || 'rec';
+    }
     const pw = parseInt(document.getElementById('pPregWeeks').value, 10);
     if (profile.stage === 'embarazo') { if (pw >= 1 && pw <= 42) { profile.pregWeeks = pw; profile.pregDate = today; } }
     const tr = radioVal('cycTrack', 'no'), old = store.get('cycle') || {};
@@ -1077,6 +1303,15 @@
   });
 
   planCard.addEventListener('click', (ev) => {
+    const ch = ev.target.closest('[data-choice]');
+    if (ch && profile) {
+      profile.routineChoice = ch.dataset.choice; store.set('profile', profile);
+      myEditing = false; week = autoWeek();
+      renderPlan(); buildTabs(); renderPhase(); selectTab(defaultTab()); renderMode();
+      if (window.__rw && window.__rw.sync) window.__rw.sync();
+      toast(ch.dataset.choice === 'mine' ? '✓ Seguirás tu propia rutina' : '✓ Usarás la rutina recomendada', 'level');
+      return;
+    }
     if (ev.target.closest('#hideProfile')) { profileHidden = true; store.set('profileHidden', true); renderPlan(); return; }
     if (ev.target.closest('#editProfile')) {
       fillForm();
@@ -3004,14 +3239,15 @@
       tri: { A: W(S, { 7: [62,42], 8: [72,32], 9: [60,42], 10: [70,32] }), B: W(S, { 7: [62,42], 8: [63,56], 9: [60,42], 10: [61,56] }), cable: [76,-8] },
       pallof: { A: W(S, { 7: [64,42], 8: [68,36], 9: [62,42], 10: [66,36] }), B: W(S, { 7: [72,34], 8: [84,34], 9: [70,34], 10: [82,34] }), cable: [4,36] },
       mobil: { A: Q, B: W(Q, { 0: [84,70], 1: [76,66], 2: [44,60] }), slow: 1 },
-      stand: { A: S, B: W(S, { 7: [64,15], 8: [66,4], 9: [56,15], 10: [54,4] }), slow: 1 }
+      stand: { A: S, B: W(S, { 7: [64,15], 8: [66,4], 9: [56,15], 10: [54,4] }), slow: 1 },
+      calf: { A: S, B: S.map((q, i) => [q[0], q[1] - (i === 4 || i === 6 ? 2 : 6)]), w: 2 }
     };
     return BETA_POSES;
   }
   function exPattern(n) {
     n = String(n).toLowerCase();
     const R = [
-      [/cardio|caminata|cinta|bici|intervalo|baile|marcha|trote|el[ií]ptica/, 'walk'], [/cu[aá]driceps/, 'press'],
+      [/cardio|caminata|cinta|bici|intervalo|baile|marcha|trote|el[ií]ptica/, 'walk'], [/cu[aá]driceps/, 'press'], [/talones|pantorrilla/, 'calf'], [/curl femoral/, 'kick'], [/rueda abdominal/, 'plank'], [/press de banca|aperturas|pec deck/, 'chest'], [/encogimiento/, 'calf'],
       [/movilidad|estir|gato|respira|suelo p[eé]lvico|kegel/, 'mobil'],
       [/hip thrust/, 'hipthrust'], [/puente/, 'bridge'],
       [/peso muerto.*una pierna/, 'slhinge'], [/peso muerto|buenos d[ií]as/, 'hinge'],
@@ -3087,10 +3323,10 @@
     return mode === 'gym' && !['walk', 'mobil', 'plank', 'deadbug', 'birddog', 'prone', 'pushup', 'stand'].includes(pt);
   }
   function fmtKg(k) { return k > 0 ? String(k).replace('.', ',') + ' kg' : 'Sin peso'; }
-  function wStep(name, kg) { const lower = ['squat', 'hinge', 'hipthrust', 'press', 'bridge', 'lunge', 'bulg'].includes(exPattern(name)); return lower && kg >= 10 ? 2.5 : 1; }
+  function wStep(name, kg) { if (/barra/i.test(name) && kg >= 20) return 2.5; const lower = ['squat', 'hinge', 'hipthrust', 'press', 'bridge', 'lunge', 'bulg'].includes(exPattern(name)); return lower && kg >= 10 ? 2.5 : 1; }
   function wSuggest(name) {
     const L = wlog()[name] || [], last = L[L.length - 1];
-    if (!last) return { last: null };
+    if (!last) { const k = seedKg(name); return k ? { last: null, seed: k, next: k } : { last: null }; }
     const prev = L[L.length - 2];
     const up = last.ok && prev && prev.ok && prev.kg === last.kg && last.kg > 0;
     return { last, up, next: up ? Math.round((last.kg + wStep(name, last.kg)) * 2) / 2 : last.kg };
@@ -3114,9 +3350,11 @@
     sheetJ = j;
     const pt = exPattern(e.name), wl = wCan(e.name, pt), sg = wl ? wSuggest(e.name) : null;
     const isDone = !!doneMap(dkey(current), d.ex)[e.name];
-    sheetKg = sg && sg.last ? sg.next : 0; sheetOk = true;
+    sheetKg = (sg && (sg.last ? sg.next : sg.seed)) || 0; sheetOk = true;
     const hist = (wlog()[e.name] || []).slice(-4).reverse();
-    const msg = !sg ? '' : !sg.last
+    const msg = !sg ? '' : !sg.last && sg.seed
+      ? `<p class="sh-tip">🎯 <b>Partimos con ${fmtKg(sg.seed)}</b>, según los pesos de tu perfil. Ajústalo si lo necesitas.</p>`
+      : !sg.last
       ? `<p class="sh-tip">🎯 <b>Primera vez:</b> elige un peso con el que las últimas 2 reps cuesten, sin perder la forma.</p>`
       : sg.up ? `<p class="sh-tip up">⬆ <b>¡Lo lograste 2 veces!</b> Hoy prueba ${fmtKg(sg.next)}.</p>`
       : sg.last.ok ? `<p class="sh-tip">👍 Repite ${fmtKg(sg.last.kg)}. Si lo logras otra vez, subes.</p>`
@@ -3124,7 +3362,7 @@
     sheetBody.innerHTML = `
       <div class="sh-fig">${figSVG(pt, e.name, true)}</div>
       <h3 id="exSheetTitle">${e.name}</h3>
-      <div class="sh-stats"><span><b>${e.series.replace(' series', '')}</b><small>series</small></span><span><b>${e.reps}</b><small>reps</small></span><span><b>${e.rest && e.rest !== '—' ? e.rest : 'Continuo'}</b><small>${e.rest && e.rest !== '—' ? 'descanso' : 'sin pausas'}</small></span></div>
+      <div class="sh-stats"><span><b>${e.series.replace(' series', '')}</b><small>series</small></span><span><b>${String(e.reps).replace(/ reps$/, '')}</b><small>reps</small></span><span><b>${e.rest && e.rest !== '—' ? e.rest : 'Continuo'}</b><small>${e.rest && e.rest !== '—' ? 'descanso' : 'sin pausas'}</small></span></div>
       <p class="sh-cue">💡 ${e.tip}</p>
       ${wl ? `
       <div class="sh-w">
@@ -3228,7 +3466,7 @@
   // ---------- Respaldo del progreso (archivo o texto; todo queda en el teléfono) ----------
   (function backup() {
     const APP = 'mi-guia-gym-hombre', $b = id => document.getElementById(id);
-    const KEYS = ['bag','exDone2','feel','foodPrefs','habits','howSeen','lastBackup','lastWeeklyNotif','log','measures','nudgeOff','pins','profile','profileHidden','programStart','remSent','remSettings','rewards','schedule','section','trainMode','weeklyNotif','wlog','xp','xpEarned','sub-tu','sub-recomendaciones'];
+    const KEYS = ['bag','exDone2','feel','foodPrefs','habits','howSeen','lastBackup','lastWeeklyNotif','log','measures','nudgeOff','pins','profile','profileHidden','programStart','remSent','remSettings','rewards','schedule','section','trainMode','weeklyNotif','wlog','xp','xpEarned','myRoutine','sub-tu','sub-recomendaciones'];
     const okVal = v => { if (typeof v !== 'string' || v.length > 500000) return false; try { JSON.parse(v); return true; } catch (e) { return false; } };
     let pendingData = null;
     function dump() {
