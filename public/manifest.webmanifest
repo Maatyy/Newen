@@ -1,7 +1,7 @@
 {
-  "name": "Tu nueva etapa en el gym · Hombre",
-  "short_name": "Gym BETA",
-  "description": "Tu plan simple de 12 semanas para empezar en el gym.",
+  "name": "Newen",
+  "short_name": "Newen",
+  "description": "Newen: tu plan de gym, paso a paso. Beta N°2.",
   "lang": "es",
   "start_url": "/",
   "scope": "/",
@@ -10,8 +10,23 @@
   "background_color": "#121417",
   "theme_color": "#121417",
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

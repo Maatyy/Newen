@@ -1,4 +1,6 @@
-# Tu nueva etapa en el gym · BETA N°1 (versión hombre)
+# Newen · Beta N°2 (versión hombre)
+
+*Newen* significa "fuerza" en mapudungun.
 
 App web (PWA) con rutina de 12 semanas, hábitos y **avisos push** que llegan aunque la app esté cerrada.
 Se publica gratis en **Netlify** desde **GitHub**.
@@ -26,15 +28,27 @@ package.json              dependencias (web-push y @netlify/blobs)
 
 No se usa base de datos externa: las suscripciones se guardan en **Netlify Blobs**, que viene incluido.
 
+## Qué incluye esta versión (Beta N°2, versión hombre)
+
+- Rutina de 12 semanas para principiantes; para quien ya entrena: varias opciones de rutina para elegir, o su propia rutina editable.
+- Registro serie por serie, récords con gráfico, calentamiento sugerido, discos por lado y cronómetro de descanso.
+- Hábitos, niveles, chapitas, resumen semanal y avisos al teléfono (push).
+- Comidas: menú del día por etapa (déficit, mantener, volumen, recomposición) con porciones medidas con la mano, horarios, reemplazos equivalentes y lista de compras semanal.
+- Consejos básicos, consejos pro (déficit, volumen, electrolitos, sueño, suplementos, mitos) y una sección de dolor, molestias y técnica.
+
+## Ahorrar créditos de Netlify
+
+Cada publicación en producción cuesta 15 créditos (plan gratis: 300 al mes, compartidos entre todos tus sitios). Junta varios cambios y súbelos en un solo commit. Si los créditos llegan a 0, los sitios se pausan hasta el siguiente ciclo.
+
 ---
 
 ## Paso 1 · Subir a GitHub (sin instalar nada)
 
 1. Entra a <https://github.com> e inicia sesión (o crea una cuenta).
 2. Arriba a la derecha, **+ → New repository**.
-3. Nombre: `gym-beta-hombre`. Elige **Private** si no quieres que el código sea público. **No** marques "Add a README". Pulsa **Create repository**.
+3. Nombre: `newen`. Elige **Private** si no quieres que el código sea público. **No** marques "Add a README". Pulsa **Create repository**.
 4. En la página del repositorio vacío, haz clic en **uploading an existing file**.
-5. Descomprime el zip en tu computador. Abre la carpeta `gym-beta-hombre` y **arrastra todo su contenido** (las carpetas `public`, `netlify`, `tests` y los archivos `netlify.toml`, `package.json`, `package-lock.json`, `README.md`) a la ventana de GitHub.
+5. Descomprime el zip en tu computador. Abre la carpeta `newen` y **arrastra todo su contenido** (las carpetas `public`, `netlify`, `tests` y los archivos `netlify.toml`, `package.json`, `package-lock.json`, `README.md`) a la ventana de GitHub.
    - Arrastra el *contenido*, no la carpeta: `netlify.toml` debe quedar en la raíz del repositorio.
    - El archivo `.gitignore` está oculto en Mac; si no se sube, no pasa nada.
    - **Nunca subas** `claves-vapid-PRIVADAS.txt`.
@@ -44,7 +58,7 @@ No se usa base de datos externa: las suscripciones se guardan en **Netlify Blobs
 ## Paso 2 · Publicar en Netlify
 
 1. Entra a <https://app.netlify.com> e inicia sesión **con tu cuenta de GitHub**.
-2. **Add new site → Import an existing project → GitHub**. Autoriza a Netlify y elige el repositorio `gym-beta-hombre`.
+2. **Add new site → Import an existing project → GitHub**. Autoriza a Netlify y elige el repositorio `newen`.
    (Si es privado y no aparece: *Configure the Netlify app on GitHub* y dale acceso a ese repositorio.)
 3. En la configuración del build, deja lo que Netlify lee de `netlify.toml`:
    - Base directory: *(vacío)*
@@ -52,7 +66,7 @@ No se usa base de datos externa: las suscripciones se guardan en **Netlify Blobs
    - Publish directory: `public`
    - Functions directory: `netlify/functions`
 4. Pulsa **Deploy**. En 1–2 minutos tendrás una dirección como `https://nombre-raro.netlify.app`.
-5. (Opcional) **Site configuration → Change site name** para dejarla, por ejemplo, `gym-beta-hombre.netlify.app`.
+5. (Opcional) **Site configuration → Change site name** para dejarla como `newenb.netlify.app` (la dirección actual: https://newenb.netlify.app/).
 
 ## Paso 3 · Activar los avisos (claves VAPID)
 
@@ -76,13 +90,13 @@ Los avisos necesitan un par de claves. Ya vienen generadas en el archivo `claves
 
 **Android (Chrome):**
 1. Abre tu dirección de Netlify. Menú ⋮ → **Agregar a la pantalla principal** (recomendado).
-2. Ve a **Inicio → Ajustes → 🔔 Activar avisos** y acepta el permiso.
+2. Ve a **Tú → ⚙️ Ajustes → 🔔 Activar avisos** y acepta el permiso.
 3. Toca **Enviar aviso de prueba**: debe llegar en segundos.
 
 **iPhone (iOS 16.4 o más nuevo):** en iPhone los avisos web **solo funcionan con la app instalada**.
 1. Abre la dirección en **Safari** → botón **Compartir** → **Agregar a inicio**.
 2. Abre la app **desde el ícono** de la pantalla de inicio (no desde Safari).
-3. **Inicio → Ajustes → 🔔 Activar avisos** → Permitir → **Enviar aviso de prueba**.
+3. **Tú → ⚙️ Ajustes → 🔔 Activar avisos** → Permitir → **Enviar aviso de prueba**.
 
 **Computador (Chrome/Edge/Firefox):** igual que Android; el aviso aparece en el sistema.
 

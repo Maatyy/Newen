@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tu nueva etapa en el gym - BETA N°1 · Hombre</title>
+<title>Newen · Beta N°2</title>
 <meta name="theme-color" content="#121417">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Gym BETA 1">
+<meta name="apple-mobile-web-app-title" content="Newen">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="Tu plan simple de 12 semanas para empezar en el gym: rutina, hábitos y avisos.">
 <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
@@ -585,6 +585,241 @@
   .nav-btn.nav-home[aria-current="page"] span { transform: scale(1.06); }
   .nav-btn.nav-home:active span { transform: scale(.94); }
 
+
+  /* ---------- Barra: la pestaña activa sube en una burbuja ---------- */
+  .nav-btn span { filter: grayscale(1); opacity: .6; transition: transform .2s, margin .2s, background .2s; }
+  .nav-btn[aria-current="page"] { background: transparent; color: var(--accent); font-weight: 700; }
+  .nav-btn[aria-current="page"] span { filter: none; opacity: 1; }
+  .nav-btn:not(.nav-home)[aria-current="page"] span { width: 44px; height: 44px; margin-top: -24px; border-radius: 50%; display: grid; place-items: center; font-size: 1.25rem; background: var(--accent); box-shadow: 0 0 0 4px var(--surface), 0 6px 16px -4px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .nav-btn.nav-home:not([aria-current="page"]) { margin-top: -8px; }
+  .nav-btn.nav-home:not([aria-current="page"]) span { width: 46px; height: 46px; font-size: 1.25rem; background: #22272C; border-color: #3A4148; box-shadow: 0 0 0 4px var(--surface); }
+  .nav-btn.nav-home[aria-current="page"] { color: var(--accent); font-weight: 700; }
+  .seg3 button { font-size: .86rem; }
+  .seg-tu button { font-size: .78rem; padding-left: 2px; padding-right: 2px; }
+  .tips-bar .wrap { padding-top: 0; }
+  .tips-bar { padding-top: 10px !important; }
+  .seg-tips button { font-size: .8rem; padding-left: 2px; padding-right: 2px; }
+  /* ---------- Tu plan ---------- */
+  .plan-card { margin-top: 14px; margin-bottom: 0; padding: 16px; border-radius: var(--radius-lg); background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 16%, var(--surface)), var(--surface) 65%); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: var(--shadow); }
+  .pl-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .pl-tag { display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .3px; padding: 2px 8px; border-radius: 99px; background: var(--accent); color: var(--on-accent); }
+  .pl-top h3 { font-size: 1.1rem; margin-top: 6px; }
+  .pl-top p { font-size: .8rem; color: var(--ink-soft); margin-top: 2px; }
+  .streak { flex: none; display: flex; flex-direction: column; align-items: center; min-width: 76px; padding: 6px 8px; border-radius: 14px; background: #2A1F0E; border: 1px solid #7C4A0B; }
+  .streak b { font-size: 1.25rem; color: #FBBF24; line-height: 1.15; }
+  .streak span { font-size: .66rem; color: #FCD34D; text-align: center; line-height: 1.2; }
+  .streak.off { background: var(--surface-2); border-color: var(--line); }
+  .streak.off b { color: var(--ink-soft); } .streak.off span { color: var(--ink-soft); }
+  .pl-segs { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; margin-top: 14px; }
+  .pl-segs i { height: 8px; border-radius: 3px; background: color-mix(in srgb, var(--accent) 22%, var(--surface-2)); }
+  .pl-segs i.done { background: var(--accent); }
+  .pl-segs i.cur { background: var(--accent); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+  .pl-segs i.p2 { background: color-mix(in srgb, var(--accent) 14%, var(--surface-2)); }
+  .pl-labs { display: grid; grid-template-columns: 1fr 1fr 1fr; margin-top: 6px; font-size: .7rem; color: var(--ink-soft); }
+  .pl-labs span:nth-child(2) { text-align: center; } .pl-labs span:last-child { text-align: right; }
+  .pl-labs span.on { color: var(--accent); font-weight: 700; }
+  .pl-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 14px; text-align: center; font-size: .7rem; color: var(--ink-soft); }
+  .pl-week i { display: grid; place-items: center; width: 34px; height: 34px; margin: 4px auto 0; border-radius: 50%; font-style: normal; font-size: .8rem; font-weight: 600; background: var(--surface-2); color: var(--ink); }
+  .pl-week .done i { background: var(--accent); color: var(--on-accent); }
+  .pl-week .plan i { background: transparent; border: 1.5px dashed color-mix(in srgb, var(--accent) 60%, transparent); }
+  .pl-week .rest i { color: var(--ink-soft); font-weight: 400; }
+  .pl-week .miss i { color: var(--ink-soft); opacity: .6; }
+  .pl-week .today i { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .pl-msg { margin-top: 10px; text-align: center; font-size: .82rem; color: var(--ink-soft); }
+  .pl-msg b { color: var(--ink); }
+  .pl-cal { display: block; width: 100%; margin-top: 10px; padding: 8px; border: 0; background: transparent; color: var(--accent); font: 600 .88rem "Outfit", system-ui, sans-serif; cursor: pointer; }
+  .next-meal { display: flex; gap: 12px; align-items: center; margin-top: 14px; padding: 14px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); box-shadow: var(--shadow-sm); }
+  .next-meal .nm-ic { width: 44px; height: 44px; flex: none; border-radius: 12px; background: var(--surface-2); display: grid; place-items: center; font-size: 1.35rem; }
+  .next-meal small { display: block; font-size: .7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  .next-meal b { display: block; font-size: .98rem; margin-top: 2px; }
+  .next-meal span.nm-d { display: block; font-size: .8rem; color: var(--ink-soft); margin-top: 2px; }
+  .next-meal > i { margin-left: auto; font-style: normal; color: var(--ink-soft); font-size: 1.2rem; }
+  .first-card { margin-bottom: 14px; padding: 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: var(--shadow-sm); }
+  .first-card .first-k { font-size: .68rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+  .first-card > b { display: block; font-size: 1.05rem; margin-top: 4px; }
+  .first-card > p:not(.first-k) { font-size: .84rem; color: var(--ink-soft); margin-top: 4px; }
+  .first-l { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .first-l span { font-size: .8rem; padding: 7px 9px; border-radius: 10px; background: var(--surface-2); }
+  .first-a { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+  .first-btn { flex: none; padding: 10px 22px; min-height: 0; }
+  .first-no { margin: 0; font-size: .78rem; color: var(--ink-soft); text-decoration: underline; }
+  /* ---------- Calendario ---------- */
+  .cal-m { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+  .cal-m b { font-size: 1rem; text-transform: capitalize; }
+  .cal-m button { border: 0; background: var(--surface-2); color: var(--ink); width: 36px; height: 36px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; }
+  .cal-m button:disabled { opacity: .3; }
+  .cal-g { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 8px; text-align: center; }
+  .cal-g .hd { font-size: .7rem; color: var(--ink-soft); padding: 2px 0; }
+  .cal-g .c { position: relative; height: 40px; border-radius: 10px; display: grid; place-items: center; font-size: .84rem; color: var(--ink); }
+  .cal-g .c.out { visibility: hidden; }
+  .cal-g .c.done { background: var(--accent); color: var(--on-accent); font-weight: 700; }
+  .cal-g .c.plan { border: 1.5px dashed color-mix(in srgb, var(--accent) 60%, transparent); }
+  .cal-g .c.today { box-shadow: 0 0 0 2px var(--accent) inset; font-weight: 700; }
+  .cal-g .c.pre { color: var(--ink-soft); opacity: .5; }
+  .cal-g .c u { position: absolute; bottom: 4px; display: flex; gap: 2px; }
+  .cal-g .c u i { width: 4px; height: 4px; border-radius: 50%; background: #38BDF8; }
+  .cal-leg { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: .72rem; color: var(--ink-soft); }
+  .cal-leg i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+  .cal-ph { margin-top: 14px; }
+  .cal-ph div { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-top: 1px solid var(--line); font-size: .86rem; }
+  .cal-ph div:first-child { border-top: 0; }
+  .cal-ph em { width: 26px; height: 26px; flex: none; border-radius: 8px; display: grid; place-items: center; font-style: normal; font-weight: 700; border: 2px solid var(--line); }
+  .cal-ph .on em { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .cal-ph small { display: block; color: var(--ink-soft); font-size: .76rem; }
+  .cal-st { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .cal-st div { background: var(--surface-2); border-radius: 12px; padding: 8px 4px; text-align: center; font-size: .7rem; color: var(--ink-soft); }
+  .cal-st b { display: block; font-size: 1.1rem; color: var(--ink); }
+  /* ---------- Accesos a consejos ---------- */
+  .rut-help { display: grid; gap: 8px; margin-top: 14px; }
+  .help-link { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+  .help-link > span { font-size: 1.4rem; }
+  .help-link b { display: block; font-size: .92rem; }
+  .help-link small { display: block; font-size: .78rem; color: var(--ink-soft); margin-top: 2px; }
+  .help-link > i { margin-left: auto; font-style: normal; color: var(--ink-soft); font-size: 1.2rem; }
+  .help-link.pain { background: #22190D; border-color: #7C4A0B; }
+  .help-link.pain b { color: #FCD34D; } .help-link.pain small { color: #D6B88A; }
+  .food-tips h3 { font-size: 1.02rem; }
+  .food-tips .help-link { margin-top: 8px; background: var(--surface-2); }
+  .food-tips .ft-tag { font-size: .62rem; font-weight: 800; padding: 1px 6px; border-radius: 99px; background: var(--accent); color: var(--on-accent); margin-left: 6px; vertical-align: 1px; }
+
+  .pulse { animation: pulse 0.8s ease 3; }
+  @keyframes pulse { 50% { transform: scale(1.06); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 35%, transparent); } }
+  .habits-home { margin-top: 10px; padding: 14px; }
+  .habits-home .habits-top { gap: 12px; }
+  .habits-home .ring { width: 58px; height: 58px; flex: none; }
+  .habits-home .ring-label b { font-size: .95rem; } .habits-home .ring-label small { font-size: .6rem; }
+  .habits-home .habits-msg strong { font-size: .98rem; } .habits-home .habits-msg span { font-size: .8rem; }
+  .habits-home #habitsBody { margin-top: 10px; }
+  .habits-home .habit { padding: 9px 12px; gap: 10px; }
+  .habits-home .habit + .habit { margin-top: 6px; }
+  .habits-home .habit-text strong { font-size: .9rem; }
+  .habits-home .habit-text span { display: none; }
+  .habits-home .habit-icon { font-size: 1.1rem; }
+  .habits-home .check { width: 24px; height: 24px; }
+  .habits-home .reset { margin-top: 6px; font-size: .78rem; }
+  .tips-bar .gold-rule { margin-bottom: 14px; }
+  .level-mini { margin-top: 14px; padding: 8px 12px; gap: 10px; border-radius: 14px; box-shadow: none; background: color-mix(in srgb, var(--surface) 80%, transparent); align-items: center; }
+  .level-mini .level-badge { width: 34px; height: 34px; font-size: 1.05rem; box-shadow: none; }
+  .level-mini .lv-line { font-size: .78rem; color: var(--ink-soft); line-height: 1.2; }
+  .level-mini .lv-line b { color: var(--ink); font-weight: 600; }
+  .level-mini .level-num { font-size: .78rem; }
+  .level-mini .xp-bar { margin-top: 5px; height: 6px; }
+  .level-mini .xp-text { margin: 0; flex: none; max-width: 92px; text-align: right; font-size: .68rem; line-height: 1.25; }
+  .level-block { padding-top: 18px !important; }
+  .level-mini { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: transform .15s, border-color .2s; }
+  .level-mini:active { transform: scale(.98); }
+  .level-mini .lv-hint { display: block; margin-top: 4px; font-size: .66rem; color: var(--accent); font-weight: 600; }
+  .lv-sum { display: flex; gap: 14px; align-items: center; margin-top: 10px; padding: 14px; border-radius: 16px; background: var(--surface-2); }
+  .lv-sum .lv-b { width: 58px; height: 58px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 1.7rem; background: var(--gold-grad); }
+  .lv-sum small { display: block; font-size: .78rem; color: var(--ink-soft); }
+  .lv-sum b { display: block; font-size: 1.2rem; }
+  .lv-sum .xp-bar { margin-top: 8px; height: 8px; }
+  .lv-sum p { margin-top: 5px; font-size: .78rem; color: var(--ink-soft); }
+  .lv-how { margin-top: 10px; font-size: .82rem; color: var(--ink-soft); }
+  .lv-how b { color: var(--ink); }
+  #levelSheet .rw-card { margin-top: 14px; box-shadow: none; }
+  .ttl-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ttl-row button { font: 600 .8rem "Outfit", system-ui, sans-serif; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; }
+  .ttl-row button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .ttl-row button:disabled { opacity: .45; cursor: not-allowed; }
+  .ttl-row button small { font-weight: 500; opacity: .8; margin-left: 4px; }
+  .acc-btn .lock { position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); font-size: .58rem; font-weight: 700; padding: 1px 5px; border-radius: 99px; background: var(--surface); color: var(--ink-soft); white-space: nowrap; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 5px 12px; border-radius: 999px; font-size: .82rem; font-weight: 600; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent); }
+  .card-prev { margin-top: 12px; display: grid; place-items: center; }
+  .card-prev img { width: 168px; aspect-ratio: 9 / 16; border-radius: 14px; box-shadow: 0 10px 24px -10px rgba(0,0,0,.7); background: var(--surface-2); }
+  .hero .wrap { position: relative; }
+  .hero-share { position: absolute; top: 4px; right: 16px; font: 600 .82rem "Outfit", system-ui, sans-serif; padding: 8px 14px; border-radius: 999px; border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); cursor: pointer; }
+  .share-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .share-row .btn { padding: 10px 8px; font-size: .84rem; min-height: 0; }
+  /* ---------- Inicio en 2×2 ---------- */
+  .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .home-grid > .tile { margin: 0 !important; min-height: 186px; padding: 14px; border-radius: 20px; display: flex; flex-direction: column; position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); color: var(--ink); text-decoration: none; }
+  .home-grid > .tile[hidden] { display: none; }
+  .home-grid > .tile.wide { grid-column: 1 / -1; min-height: 0; }
+  .home-grid > .today-card { background: linear-gradient(150deg, color-mix(in srgb, var(--accent) 18%, var(--surface)), var(--surface) 70%); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+  .home-grid > .today-card::before, .home-grid > .today-card::after { display: none; }
+  .tk { font-size: .64rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: var(--ink-soft); }
+  .tk.a { color: var(--accent); }
+  .tile h4 { font-size: 1.12rem; line-height: 1.15; margin-top: 6px; font-weight: 600; }
+  .tile .tp { font-size: .76rem; color: var(--ink-soft); margin-top: 4px; line-height: 1.3; }
+  .tile .tp b { color: var(--ink); font-weight: 600; }
+  .tile .te { font-size: 1.6rem; line-height: 1; margin-top: 8px; }
+  .tgo { margin-top: auto; padding: 8px 0 0; border: 0; background: none; font: 700 .78rem "Outfit", system-ui, sans-serif; color: var(--accent); text-align: left; cursor: pointer; }
+  .tgo.btn-in { align-self: flex-start; margin-top: auto; padding: 8px 14px; border-radius: 999px; background: var(--accent); color: var(--on-accent); }
+  .tbar { height: 5px; border-radius: 9px; background: var(--surface-2); margin-top: 8px; overflow: hidden; } .tbar i { display: block; height: 100%; background: var(--accent); }
+  .tfl { display: flex; align-items: center; gap: 6px; margin-top: 8px; } .tfl b { font-size: 1.45rem; color: #FBBF24; line-height: 1; } .tfl span { font-size: .7rem; color: #FCD34D; line-height: 1.15; }
+  .tfl.off b, .tfl.off span { color: var(--ink-soft); }
+  .wk7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 9px; }
+  .wk7 i { height: 19px; border-radius: 5px; background: var(--surface-2); font-style: normal; font-size: .55rem; font-weight: 700; display: grid; place-items: center; color: var(--ink-soft); }
+  .wk7 i.d { background: var(--accent); color: var(--on-accent); } .wk7 i.t { box-shadow: 0 0 0 1.5px var(--accent) inset; color: var(--ink); } .wk7 i.p { background: transparent; border: 1.2px dashed color-mix(in srgb, var(--accent) 60%, transparent); }
+  .habits-home .habits-top { position: absolute; top: 10px; right: 10px; margin: 0; }
+  .habits-home .habits-msg { display: none; }
+  .habits-home .ring { width: 34px; height: 34px; }
+  .habits-home .ring-label small { display: none; } .habits-home .ring-label b { font-size: .62rem; }
+  .habits-home #habitsBody { margin-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+  .habits-home #habitsBody[hidden] { display: none; }
+  .habits-home .habit { padding: 6px 8px; gap: 7px; border-radius: 10px; margin: 0 !important; min-height: 0; }
+  .habits-home .habit-text strong { font-size: .76rem; font-weight: 500; }
+  .habits-home .habit-text span, .habits-home .habit-icon, .habits-home #resetHabits, .habits-home #toggleHabits { display: none; }
+  .habits-home .check { width: 18px; height: 18px; border-radius: 6px; }
+  .habits-home .check svg { width: 12px; height: 12px; }
+  .next-meal.tile { gap: 0; align-items: stretch; }
+  .next-meal.tile > i { display: none; }
+  /* Franjas de aviso, delgadas, arriba de la grilla */
+  .strip, .strip-card { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding: 10px 12px; border-radius: 16px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+  .strip[hidden], .strip-card[hidden] { display: none; }
+  .strip-i { font-size: 1.3rem; } .strip-t { flex: 1; min-width: 0; } .strip-t b { display: block; font-size: .84rem; } .strip-t small { display: block; font-size: .72rem; color: var(--ink-soft); }
+  .strip-go { flex: none; font: 700 .78rem "Outfit", system-ui, sans-serif; padding: 7px 12px; border-radius: 999px; background: var(--accent); color: var(--on-accent); text-decoration: none; }
+  .strip-x { flex: none; border: 0; background: none; color: var(--ink-soft); font: 500 .7rem "Outfit", system-ui, sans-serif; text-decoration: underline; cursor: pointer; padding: 4px; }
+  .strip-card { padding: 10px 12px !important; box-shadow: none !important; }
+  .strip-card .nudge-cat, .strip-card .install-ico, .strip-card > img { display: none !important; }
+  .strip-card .nudge-txt, .strip-card .install-txt { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: .78rem; }
+  .strip-card .nudge-txt b, .strip-card .install-txt b { font-size: .84rem; width: 100%; }
+  .strip-card .nudge-txt > span, .strip-card .install-txt > span { font-size: .72rem; color: var(--ink-soft); width: 100%; }
+  .strip-card .nudge-actions { margin-top: 2px; gap: 10px; }
+  .strip-card .nudge-actions button, .strip-card .nudge-actions a { font-size: .76rem !important; padding: 6px 12px !important; min-height: 0 !important; }
+  #nudge { display: none !important; }
+  .hs { display: none; font-style: normal; }
+  .habits-home .habit-text strong { display: none; }
+  .habits-home .hs { display: block; font-size: .78rem; font-weight: 500; white-space: nowrap; }
+  .habits-home .habit:has(input:checked) .hs { text-decoration: line-through; color: var(--ink-soft); }
+  .install-card.strip-card { border-style: solid; }
+  .install-card.strip-card #installWhy { display: none !important; }
+  .install-card.strip-card .install-txt b { width: auto; flex: 1; }
+  .install-card.strip-card .nudge-actions { margin: 0; }
+  /* ---------- Gráficos ---------- */
+  #chartCard h3 small { font-size: .62rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; background: var(--surface-2); color: var(--ink-soft); vertical-align: 2px; }
+  #shareSheet .seg { display: grid; grid-template-columns: repeat(3, 1fr); } #shareSheet .seg button { font-size: .8rem; padding-left: 2px; padding-right: 2px; white-space: nowrap; }
+  #chTabs { flex-wrap: nowrap; gap: 5px; } #chTabs button { flex: 1; padding: 7px 4px; font-size: .72rem; white-space: nowrap; }
+  .ch-cap { margin-top: 12px; font-size: .84rem; color: var(--ink-soft); min-height: 1.3em; }
+  .ch-cap b { color: var(--ink); }
+  .ch-box svg { display: block; width: 100%; height: auto; margin-top: 6px; overflow: visible; }
+  .ch-box .gl { stroke: var(--line); stroke-width: 1; }
+  .ch-box .ax { fill: var(--ink-soft); font: 500 9px "Outfit", system-ui, sans-serif; }
+  .ch-box .bar { fill: var(--accent); }
+  .ch-box .bar.low { fill: color-mix(in srgb, var(--accent) 40%, var(--surface-2)); }
+  .ch-box .bar.cur { fill: color-mix(in srgb, var(--accent) 70%, #fff); }
+  .ch-box .tgt { stroke: #FBBF24; stroke-width: 1.5; stroke-dasharray: 4 3; }
+  .ch-box .tgt-l { fill: #FBBF24; font: 600 9px "Outfit", system-ui, sans-serif; }
+  .ch-box .ln { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .ch-box .ar { fill: color-mix(in srgb, var(--accent) 14%, transparent); }
+  .ch-box .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+  .ch-box .hit { fill: transparent; cursor: pointer; }
+  .ch-box .sel { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 2 2; }
+  .ch-rem { display: block; margin-top: 10px; padding: 9px 11px; border-radius: 12px; background: color-mix(in srgb, #FBBF24 10%, var(--surface-2)); border: 1px solid color-mix(in srgb, #FBBF24 35%, transparent); color: var(--ink); font-size: .8rem; line-height: 1.4; }
+  .ch-rem .reset { display: inline; margin: 0 0 0 2px; padding: 0; font-size: .8rem; color: var(--accent); text-decoration: underline; }
+  .ch-empty { padding: 26px 10px; text-align: center; font-size: .86rem; color: var(--ink-soft); }
+  .weigh-strip { flex-wrap: wrap; }
+  .weigh-strip .strip-t { min-width: 140px; }
+  .ws-in { display: flex; gap: 6px; align-items: center; }
+  .ws-in input { width: 74px; font: 600 .9rem "Outfit", system-ui, sans-serif; padding: 7px 8px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface-2); color: var(--ink); }
+  .ws-in .strip-go { border: 0; cursor: pointer; }
+  .brand-row { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+  .brand-row .logo-wrap { margin-bottom: 0 !important; }
+  .brand b { display: block; font: 600 1.7rem/1 "Oswald", "Arial Narrow", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+  .brand small { display: block; margin-top: 4px; font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); opacity: .85; }
+  .hero.compact .brand-row { margin-bottom: 14px; }
+  .hero.compact .brand b { font-size: 1.35rem; }
   /* ---------- Premium ---------- */
   .prem-badge { position: absolute; top: -6px; right: -6px; font-size: .62rem; font-weight: 800; padding: 2px 6px; border-radius: 999px; background: var(--gold-grad); color: #14171A; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
   .acc-btn.prem-lock { filter: grayscale(.35); opacity: .85; }
@@ -846,6 +1081,187 @@
   .my-edit input, .my-edit select { width: 100%; font: 400 16px "Outfit", system-ui, sans-serif; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--radius-sm); padding: 11px 12px; }
   .my-row { display: grid; grid-template-columns: minmax(118px, 1fr) minmax(0, 1fr) auto; gap: 8px; }
   .my-row .btn { min-height: 46px; padding: 10px 14px; }
+  /* ---------- Orden de la sesión ---------- */
+  .flow { list-style: none; margin-top: 18px; display: grid; grid-template-columns: 1fr 14px 1fr 14px 1fr; align-items: stretch; gap: 4px; }
+  .flow li { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px 4px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); text-align: center; min-width: 0; }
+  .flow li i { font-style: normal; font-size: 1.3rem; line-height: 1; }
+  .flow li b { font-size: .88rem; }
+  .flow li small { font-size: .74rem; color: var(--ink-soft); }
+  .flow li.mid { background: var(--accent); border-color: var(--accent); }
+  .flow li.mid b, .flow li.mid small { color: var(--on-accent); }
+  .flow li.arrow { padding: 0; background: none; border: 0; color: var(--ink-soft); font-size: 1.3rem; }
+  /* ---------- Consejos pro ---------- */
+  .seg4 { grid-template-columns: repeat(4, 1fr); }
+  .seg4 button { font-size: .8rem; padding: 11px 2px; }
+  .tips { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+  .tip-card { background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+  .tip-card.mine { border-color: var(--accent); }
+  .tip-card > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 16px; }
+  .tip-card > summary::-webkit-details-marker { display: none; }
+  .tip-ic { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-size: 1.4rem; background: var(--surface-2); }
+  .tip-card summary > span:nth-child(2) { flex: 1; min-width: 0; }
+  .tip-card summary b { display: block; font-size: 1rem; }
+  .tip-card summary small { display: block; font-size: .84rem; color: var(--ink-soft); margin-top: 2px; }
+  .tip-mine { display: none; flex: none; font-style: normal; font-size: .72rem; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: var(--accent); color: var(--on-accent); }
+  .tip-card.mine .tip-mine { display: inline-block; }
+  .tip-card ul { list-style: none; padding: 0 16px 6px; display: grid; gap: 10px; }
+  .tip-card li { position: relative; padding-left: 18px; font-size: .92rem; line-height: 1.45; color: var(--ink-soft); }
+  .tip-card li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .tip-card li b { color: var(--ink); }
+  .tip-note { margin: 4px 16px 16px; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: .82rem; color: var(--ink-soft); border-left: 3px solid #F87171; }
+  .tip-card ul:last-child { padding-bottom: 16px; }
+  .tips-h { margin-top: 30px; font-size: 1.15rem; }
+  .tips-h + .tips { margin-top: 12px; }
+  .tip-card li b.ok { color: #86EFAC; } .tip-card li b.warn { color: #FDE047; } .tip-card li b.bad { color: #FCA5A5; }
+  .tip-act { margin: 6px 16px 16px; display: grid; gap: 6px; }
+  .tip-act .btn { justify-content: center; min-height: 46px; font-size: .92rem; }
+  .tip-act small { font-size: .78rem; color: var(--ink-soft); text-align: center; }
+  /* ---------- Menú del día y lista de compras ---------- */
+  .menu-card { margin-top: 18px; background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 18px; border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent); }
+  .menu-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .menu-top h3 { font-size: 1.1rem; }
+  .menu-sub, .menu-note { margin-top: 8px; font-size: .88rem; color: var(--ink-soft); }
+  .phase-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 12px; }
+  .phase-pick button { font: 600 .88rem "Outfit", system-ui, sans-serif; padding: 10px 6px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; }
+  .phase-pick button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .kcal-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; }
+  .kcal-row div { padding: 10px 6px; border-radius: 12px; background: var(--surface-2); text-align: center; }
+  .kcal-row b { display: block; font: 600 1.15rem "Oswald", "Arial Narrow", sans-serif; color: var(--fuchsia); }
+  .kcal-row small { font-size: .72rem; color: var(--ink-soft); }
+  .meal-t { font: 500 .82rem "Outfit", system-ui, sans-serif; color: var(--fuchsia); margin-left: 4px; white-space: nowrap; }
+  .meal-tag { display: inline-block; margin-top: 6px; font-size: .74rem; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: color-mix(in srgb, var(--accent) 18%, var(--surface)); color: var(--fuchsia-deep); }
+  .time-box { margin-top: 12px; padding: 12px; border-radius: 12px; background: var(--surface-2); font-size: .86rem; color: var(--ink-soft); }
+  .time-box label { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 10px; color: var(--ink); font-weight: 500; }
+  .time-box select { font: inherit; padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); }
+  .field input.bad { border-color: #F87171; box-shadow: 0 0 0 3px rgba(248, 113, 113, .2); }
+  .body-why { margin-top: 8px; font-size: .8rem; color: var(--ink-soft); }
+  .body-miss { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; padding: 12px; border-radius: 12px; border: 1px solid #F59E0B; background: color-mix(in srgb, #F59E0B 10%, var(--surface)); font-size: .86rem; color: var(--ink-soft); }
+  .body-miss b { color: var(--ink); }
+  .body-miss .btn { align-self: flex-start; padding: 8px 16px; min-height: 0; font-size: .86rem; }
+  .adj-box { margin-top: 12px; padding: 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line)); font-size: .86rem; color: var(--ink-soft); }
+  .adj-h { font-weight: 600; color: var(--ink); font-size: .95rem; }
+  .adj-last { margin-top: 6px; color: var(--ink); line-height: 1.45; }
+  .adj-small { margin-top: 6px; font-size: .8rem; color: var(--ink-soft); }
+  .adj-link { display: inline; margin: 0; padding: 0 2px; font-size: .8rem; color: var(--fuchsia); text-decoration: underline; }
+  .adj-weigh { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; color: var(--ink); }
+  .adj-in { display: flex; gap: 6px; }
+  .adj-in input { width: 92px; font: inherit; padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); }
+  .adj-in .btn { padding: 8px 14px; min-height: 0; font-size: .86rem; }
+  .adj-q { margin-top: 12px; color: var(--ink); font-weight: 500; }
+  .adj-yn { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 6px; }
+  .adj-yn button { font: 600 .82rem "Outfit", system-ui, sans-serif; padding: 9px 4px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; white-space: nowrap; }
+  .adj-yn button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .trend-row { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
+  .trend-row > div { display: flex; flex-direction: column; flex: none; }
+  .trend-row b { font: 500 1.6rem "Oswald", "Arial Narrow", sans-serif; }
+  .trend-row b small { font: .8rem "Outfit", sans-serif; color: var(--ink-soft); }
+  .trend-row span { font-size: .78rem; color: var(--ink-soft); }
+  .trend-row .spark { flex: 1; height: 46px; }
+  .trend-list { list-style: none; padding: 0; margin: 6px 0 0; font-size: .86rem; }
+  .trend-list li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+  .meal { margin-top: 14px; padding: 14px; border-radius: var(--radius-md); background: var(--surface-2); border: 1px solid var(--line); }
+  .meal-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .meal-h b { font-size: .95rem; }
+  .meal-swap { margin: 0; padding: 6px 2px; font-size: .82rem; color: var(--fuchsia); white-space: nowrap; flex: none; }
+  .meal-n { margin-top: 6px; font-weight: 600; font-size: 1.02rem; }
+  .meal-p { list-style: none; margin-top: 8px; display: grid; gap: 6px; font-size: .9rem; }
+  .meal-p li { display: flex; gap: 10px; align-items: baseline; }
+  .meal-p .hand { width: 22px; flex: none; text-align: center; }
+  .meal-p b { color: var(--fuchsia); }
+  .meal-p small { color: var(--ink-soft); }
+  .meal-p .alt { display: block; margin-top: 2px; font-size: .8rem; }
+  .meal-empty { margin-top: 6px; font-size: .88rem; color: var(--ink-soft); }
+  .menu-card > summary { list-style: none; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .menu-card > summary::-webkit-details-marker { display: none; }
+  .menu-card > summary::after { content: "▾"; color: var(--ink-soft); }
+  .menu-card[open] > summary::after { content: "▴"; }
+  .menu-card > summary small { font-weight: 400; color: var(--ink-soft); margin-left: auto; }
+  .shop-g { margin: 14px 0 6px; font-weight: 600; font-size: .9rem; }
+  .shop-i { display: flex; gap: 12px; align-items: center; padding: 9px 4px; border-bottom: 1px solid var(--petal); cursor: pointer; }
+  .shop-i input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+  .shop-i b { display: block; font-weight: 500; font-size: .92rem; }
+  .shop-i small { color: var(--ink-soft); font-size: .8rem; }
+  .shop-i.on b { text-decoration: line-through; color: var(--ink-soft); }
+  .hand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .hand-grid div { padding: 12px; border-radius: 14px; background: var(--surface-2); display: flex; flex-direction: column; gap: 3px; }
+  .hand-grid i { font-style: normal; font-size: 1.5rem; }
+  .hand-grid b { font-size: .92rem; }
+  .hand-grid span { font-size: .8rem; color: var(--ink-soft); line-height: 1.35; }
+  /* ---------- Series, récords y descanso ---------- */
+  .sh-lbl { margin-top: 14px; font-weight: 600; font-size: .9rem; }
+  .sh-lbl small { font-weight: 400; color: var(--ink-soft); }
+  .sh-plates, .sh-wu, .sh-goal { margin-top: 8px; font-size: .85rem; color: var(--ink-soft); }
+  .sh-plates:empty { display: none; }
+  .sh-wu b { color: var(--ink); }
+  .sh-pr { display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font-size: .9rem; }
+  .sh-pr small { color: var(--ink-soft); }
+  .sh-pr .spark { flex: 1; min-width: 70px; }
+  .sets { display: grid; gap: 8px; margin-top: 8px; }
+  .set-row { display: grid; grid-template-columns: 26px 1fr 14px 1fr 46px; align-items: center; gap: 6px; padding: 6px 8px; border-radius: 14px; background: var(--surface); border: 1.5px solid var(--line); }
+  .set-row.done { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+  .set-n { font-weight: 700; color: var(--ink-soft); text-align: center; }
+  .set-x { color: var(--ink-soft); text-align: center; }
+  .set-in { display: flex; align-items: center; gap: 4px; min-width: 0; }
+  .set-in input { width: 100%; min-width: 0; font: 600 16px "Outfit", system-ui, sans-serif; color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 6px; text-align: center; }
+  .set-in small { color: var(--ink-soft); font-size: .72rem; }
+  .set-ok { width: 46px; height: 42px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface-2); color: var(--ink-soft); font-size: 1.1rem; font-weight: 700; cursor: pointer; }
+  .set-ok[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .rest-bar { position: fixed; left: 50%; transform: translateX(-50%); top: calc(10px + env(safe-area-inset-top, 0px)); z-index: 80; width: min(520px, calc(100% - 20px)); display: flex; align-items: center; gap: 8px; padding: 10px 10px 10px 14px; border-radius: 18px; background: #0B0D0F; border: 1.5px solid var(--accent); box-shadow: 0 12px 30px -10px rgba(0,0,0,.8); overflow: hidden; color: #fff; }
+  .rest-fill { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--accent); transition: width .25s linear; }
+  .rest-label { flex: 1; min-width: 0; font-size: .85rem; color: #C9D1D8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rest-time { font: 700 1.5rem "Oswald", "Arial Narrow", sans-serif; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .rest-bar button { flex: none; min-width: 40px; height: 38px; border-radius: 10px; border: 1px solid #2B3238; background: #1C2024; color: #fff; font: 600 .85rem "Outfit", system-ui, sans-serif; cursor: pointer; }
+  .rest-bar.done { background: var(--accent); }
+  .rest-bar.done .rest-label, .rest-bar.done .rest-time { color: var(--on-accent); font-weight: 700; }
+  .pr-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--petal); }
+  .pr-row:last-child { border-bottom: 0; }
+  body:has(.rest-bar:not([hidden])) .sheet-panel { max-height: calc(100vh - 96px - env(safe-area-inset-top, 0px)); }
+  .pr-row > div { flex: 1.4; min-width: 0; }
+  .pr-row b { display: block; font-size: .92rem; }
+  .pr-row small { font-size: .8rem; color: var(--ink-soft); }
+  .pr-row .spark { flex: 1; }
+  @media (prefers-reduced-motion: reduce) { .rest-fill { transition: none; } }
+  /* ---------- Instalar y guía de bienvenida ---------- */
+  .install-card { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding: 14px 16px; border-radius: var(--radius-lg); background: var(--surface); border: 1.5px dashed var(--accent); box-shadow: var(--shadow); }
+  .install-ico { width: 52px; height: 52px; border-radius: 14px; flex: none; }
+  .install-txt { flex: 1; min-width: 0; }
+  .install-txt b { display: block; }
+  .install-txt span { font-size: .86rem; color: var(--ink-soft); }
+  .nudge-actions .install-go { text-decoration: none; font: inherit; font-weight: 600; font-size: .85rem; color: var(--on-accent); background: var(--accent); border: 0; padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+  .ios-why { margin-top: 12px; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 12%, var(--surface)); font-size: .86rem; }
+  .steps { list-style: none; margin-top: 12px; display: grid; gap: 10px; }
+  .steps[hidden], .ios-why[hidden] { display: none !important; }
+  .steps li { display: flex; gap: 12px; padding: 12px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line); }
+  .st-n { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: .85rem; }
+  .steps li > div > b { display: block; font-size: .95rem; }
+  .steps li > div > span:not(.ui-btn) { display: block; font-size: .85rem; color: var(--ink-soft); margin-top: 2px; }
+  .ui-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; padding: 7px 12px; border-radius: 12px; background: #fff; color: #0A84FF; font-size: .85rem; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .ui-btn em { font-style: normal; color: #1C1C1E; }
+  .ui-btn em:empty { display: none; }
+  .ui-btn .ico { width: 22px; height: 22px; color: #0A84FF; }
+  .ui-btn .ico-t { color: #0A84FF; font-size: .9rem; }
+  .ui-btn .ico-img { width: 26px; height: 26px; border-radius: 7px; }
+  .vid-links:empty { display: none; }
+  .vid-links { margin-top: 12px; display: grid; gap: 8px; }
+  .tour { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px; background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
+  .tour[hidden] { display: none !important; }
+  .tour-box { position: relative; width: min(420px, 100%); background: var(--surface); border: 1.5px solid var(--accent); border-radius: 26px; padding: 22px 20px 18px; box-shadow: 0 20px 50px -20px rgba(0,0,0,.8); }
+  .tour-skip { position: absolute; top: 12px; right: 14px; background: none; border: 0; color: var(--ink-soft); font: 500 .88rem "Outfit", sans-serif; cursor: pointer; padding: 6px; }
+  .tour-slide { text-align: center; padding-top: 8px; }
+  .tour-slide .big { font-size: 3rem; line-height: 1; }
+  .tour-slide h3 { font: 600 1.5rem "Oswald", "Arial Narrow", sans-serif; margin-top: 12px; text-transform: uppercase; }
+  .tour-slide p { margin-top: 8px; color: var(--ink-soft); font-size: .95rem; }
+  .tour-demo { margin: 16px auto 0; max-width: 300px; text-align: left; }
+  .tour-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+  .tour-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .tour-dots i.on { background: var(--accent); width: 22px; border-radius: 6px; }
+  .tour-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; margin-top: 16px; }
+  .tour-actions .btn { justify-content: center; min-height: 48px; }
+  .demo-hands { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .demo-hands div { padding: 8px 4px; border-radius: 12px; background: var(--surface-2); text-align: center; font-size: .72rem; color: var(--ink-soft); }
+  .demo-hands b { display: block; font-size: 1.4rem; }
+  .demo-habit { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); margin-top: 6px; font-size: .88rem; }
+  .demo-habit i { font-style: normal; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-grad); color: var(--on-accent); font-size: .8rem; font-weight: 700; }
   /* ---------- Versión hombre: sin ciclo, embarazo ni mascota ---------- */
   #cycleCard, .logo-acc, #mascota { display: none !important; }
   /* ---------- BETA N°1 · mejoras de diseño ---------- */
@@ -964,10 +1380,23 @@
 
 <header class="hero" data-sec="inicio">
   <div class="wrap">
-    <div class="logo-wrap"><img class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyQjMyMzgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMjE0MTciLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Q5Rjk5RCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzY1QTMwRCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzRTYzNSIgc3Ryb2tlLXdpZHRoPSIxMCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIxNTAiIHk9IjIzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjQzlEMUQ4Ii8+PHJlY3QgeD0iOTIiIHk9IjE2OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjE3NiIgcng9IjE0IiBmaWxsPSJ1cmwoI2wpIiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxyZWN0IHg9IjEzOCIgeT0iMTk2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTIwIiByeD0iMTAiIGZpbGw9IiM4NENDMTYiIHN0cm9rZT0iIzBCMEQwRiIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHJlY3QgeD0iMzcyIiB5PSIxNjgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNzYiIHJ4PSIxNCIgZmlsbD0idXJsKCNsKSIgc3Ryb2tlPSIjMEIwRDBGIiBzdHJva2Utd2lkdGg9IjYiLz48cmVjdCB4PSIzNDQiIHk9IjE5NiIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjODRDQzE2IiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Ik0yMjYgMTUwIEwyOTIgMTUwIEwyNzAgMjA2IEwzMDQgMjA2IEwyMjIgMzAwIEwyNDIgMjI4IEwyMDggMjI4IFoiIGZpbGw9IiNBM0U2MzUiIG9wYWNpdHk9IjAiLz48L3N2Zz4=" alt="Logo: una mancuerna" width="96" height="96"><span class="logo-acc" id="logoAcc" aria-hidden="true"></span></div>
-    <span class="beta-tag">BETA N°1</span>
-    <h1 class="serif">Bienvenido a tu <em>nueva etapa</em></h1>
-    <p class="lead">Tu plan simple para empezar con confianza.</p>
+    <div class="brand-row">
+      <div class="logo-wrap"><img class="logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyQjMyMzgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMjE0MTciLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Q5Rjk5RCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzY1QTMwRCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzRTYzNSIgc3Ryb2tlLXdpZHRoPSIxMCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIxNTAiIHk9IjIzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjQzlEMUQ4Ii8+PHJlY3QgeD0iOTIiIHk9IjE2OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjE3NiIgcng9IjE0IiBmaWxsPSJ1cmwoI2wpIiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxyZWN0IHg9IjEzOCIgeT0iMTk2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTIwIiByeD0iMTAiIGZpbGw9IiM4NENDMTYiIHN0cm9rZT0iIzBCMEQwRiIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHJlY3QgeD0iMzcyIiB5PSIxNjgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNzYiIHJ4PSIxNCIgZmlsbD0idXJsKCNsKSIgc3Ryb2tlPSIjMEIwRDBGIiBzdHJva2Utd2lkdGg9IjYiLz48cmVjdCB4PSIzNDQiIHk9IjE5NiIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjODRDQzE2IiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Ik0yMjYgMTUwIEwyOTIgMTUwIEwyNzAgMjA2IEwzMDQgMjA2IEwyMjIgMzAwIEwyNDIgMjI4IEwyMDggMjI4IFoiIGZpbGw9IiNBM0U2MzUiIG9wYWNpdHk9IjAiLz48L3N2Zz4=" alt="Logo: una mancuerna" width="96" height="96"><span class="logo-acc" id="logoAcc" aria-hidden="true"></span></div>
+      <div class="brand"><b>Newen</b><small>Beta N°2</small></div>
+    </div>
+    <h1 class="serif">Bienvenido a <em>Newen</em></h1>
+    <p class="hero-tag" id="heroTag" hidden></p>
+    <button class="hero-share" type="button" data-share="progreso" hidden>📤 Compartir</button>
+    <p class="lead">Tu plan de gym, paso a paso. Newen significa fuerza en mapudungun.</p>
+    <div class="level-card level-mini" role="button" tabindex="0" data-level aria-label="Ver tu nivel, chapitas y recompensas">
+      <div class="level-badge" id="levelBadge" aria-hidden="true">🌱</div>
+      <div class="level-info">
+        <p class="lv-line"><span class="level-num" id="levelNum">Nivel 1</span> · <b id="levelName">Principiante</b></p>
+        <div class="xp-bar" id="xpBar" role="progressbar" aria-label="Progreso al siguiente nivel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="xpFill"></i></div>
+        <small class="lv-hint">Toca para ver tus chapitas ›</small>
+      </div>
+      <p class="xp-text" id="xpText"></p>
+    </div>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#perfil">Armar mi plan</a>
       <a class="btn btn-ghost" href="#rutina">Ver mi rutina</a>
@@ -984,100 +1413,35 @@
   <!-- Nivel -->
   <section class="block level-block" aria-labelledby="levelName" data-sec="inicio">
     <div class="wrap">
-      <div class="nudge" id="nudge" hidden>
-        <div class="nudge-cat" aria-hidden="true">💪</div>
-        <div class="nudge-txt">
-          <b id="nudgeTitle"></b><span id="nudgeBody"></span>
-          <div class="nudge-actions"><a id="nudgeGo" href="#rutina">Vamos</a><button type="button" id="nudgeLater">Hoy no</button></div>
+      <div class="strip" id="firstCard" hidden>
+        <span class="strip-i" aria-hidden="true">🎒</span>
+        <div class="strip-t"><b>¿Tu primer día en el gym?</b><small>Lo que conviene saber antes de ir (3 min)</small></div>
+        <a class="strip-go" href="#primer">Ver guía</a>
+        <button type="button" class="strip-x" data-firstoff aria-label="Ya la leí, no mostrar más">Ya la leí</button>
+      </div>
+      <div class="nudge body-card strip-card" id="bodyCard" hidden>
+        <div class="nudge-cat" aria-hidden="true">📋</div>
+        <div class="nudge-txt"><b>Faltan datos de tu perfil</b><span id="bodyCardTxt"></span>
+          <div class="nudge-actions"><button type="button" class="install-go" data-bodyedit>Completar</button></div>
         </div>
       </div>
-      <section class="today-card" id="todayCard" aria-labelledby="todayTitle"></section>
-      <div class="cycle-card" id="cycleCard" hidden></div>
-
-      <p class="inicio-label">Tu progreso</p>
-      <div class="level-card" style="margin-top:12px">
-        <div class="level-badge" id="levelBadge" aria-hidden="true">🌱</div>
-        <div class="level-info">
-          <p class="level-num" id="levelNum">Nivel 1</p>
-          <h2 id="levelName">Principiante</h2>
-          <div class="xp-bar" id="xpBar" role="progressbar" aria-label="Progreso al siguiente nivel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="xpFill"></i></div>
-          <p class="xp-text" id="xpText"></p>
+      <div class="install-card strip-card" id="installCard" hidden>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyQjMyMzgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMjE0MTciLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Q5Rjk5RCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzY1QTMwRCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzRTYzNSIgc3Ryb2tlLXdpZHRoPSIxMCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIxNTAiIHk9IjIzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjQzlEMUQ4Ii8+PHJlY3QgeD0iOTIiIHk9IjE2OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjE3NiIgcng9IjE0IiBmaWxsPSJ1cmwoI2wpIiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxyZWN0IHg9IjEzOCIgeT0iMTk2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTIwIiByeD0iMTAiIGZpbGw9IiM4NENDMTYiIHN0cm9rZT0iIzBCMEQwRiIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHJlY3QgeD0iMzcyIiB5PSIxNjgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNzYiIHJ4PSIxNCIgZmlsbD0idXJsKCNsKSIgc3Ryb2tlPSIjMEIwRDBGIiBzdHJva2Utd2lkdGg9IjYiLz48cmVjdCB4PSIzNDQiIHk9IjE5NiIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjODRDQzE2IiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Ik0yMjYgMTUwIEwyOTIgMTUwIEwyNzAgMjA2IEwzMDQgMjA2IEwyMjIgMzAwIEwyNDIgMjI4IEwyMDggMjI4IFoiIGZpbGw9IiNBM0U2MzUiIG9wYWNpdHk9IjAiLz48L3N2Zz4=" alt="" class="install-ico">
+        <div class="install-txt"><b>Instala la app en tu pantalla de inicio</b><span id="installWhy">Se abre como app y en iPhone te permite recibir avisos.</span>
+          <div class="nudge-actions"><button type="button" class="install-go" data-install>Ver cómo</button><button type="button" id="installLater">Ahora no</button></div>
         </div>
       </div>
-      <p class="xp-help">💪 +10 por ejercicio · 💧 +5 por hábito</p>
-
-      <div class="rw-card" id="weekCard">
-        <h3>Tu resumen semanal <small id="sumRange"></small></h3>
-        <div id="sumBody"></div>
-        <div class="sum-actions"><button class="reset" type="button" id="demoWeek" hidden>Ver ejemplo</button></div>
+      <div class="strip weigh-strip" id="weighStrip" hidden>
+        <span class="strip-i" aria-hidden="true">⚖️</span>
+        <div class="strip-t"><b>¿Te pesaste hoy?</b><small id="weighTxt">En ayunas, después del baño</small></div>
+        <span class="ws-in"><input type="number" id="wsW" inputmode="decimal" min="35" max="250" step="0.1" aria-label="Tu peso de hoy en kg"><button type="button" class="strip-go" data-wsave>Anotar</button></span>
+        <button type="button" class="strip-x" data-wlater aria-label="Hoy no">Hoy no</button>
       </div>
-
-      <div class="rw-card">
-        <h3>Tus chapitas <small id="pinCount"></small></h3>
-        <div class="pins" id="pins"></div>
-        <button class="reset pins-more" type="button" id="pinsMore" aria-expanded="false">Ver todas</button>
-        <p class="pin-hint" id="pinHint" aria-live="polite">Toca una chapita para ver cómo se gana.</p>
-      </div>
-
-      <div class="rw-card">
-        <h3>Tus recompensas <small id="rwCount"></small></h3>
-        <p class="rw-label">Color de tu web</p>
-        <div class="rw-row" id="swatches"></div>
-        <p class="rw-label">Frase de hoy</p>
-        <div class="phrase" id="phrase"></div>
-        <p class="phrase-meta" id="phraseMeta"></p>
-      </div>
-
-      <p class="inicio-label">Ajustes</p>
-      <div class="rw-card" id="remCard" style="margin-top:12px">
-        <h3>Recordatorios <small>🔔</small></h3>
-        <label class="rem-row"><span>Día de entrenamiento<small>Si es tu día y no has marcado tu sesión</small></span><span class="switch"><input type="checkbox" id="remTrain" checked><i></i></span></label>
-        <label class="rem-row"><span>Hábitos del día<small>Si te faltan hábitos por marcar</small></span><span class="switch"><input type="checkbox" id="remHab" checked><i></i></span></label>
-        <label class="rem-row"><span>Hora del primer aviso<small>Si no marcas nada, te recuerda otra vez 2 horas después</small></span>
-          <select class="rem-time" id="remTime"><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19" selected>19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option></select></label>
-        <p class="sum-note" id="remNote"></p>
-        <div class="sum-actions">
-          <button class="btn btn-primary" type="button" id="notifBtn">🔔 Activar avisos</button>
-          <button class="reset" type="button" id="testPush" hidden>Enviar aviso de prueba</button>
-        </div>
-        <p class="sum-note" id="notifNote"></p>
-        <button class="btn btn-ghost btn-block" type="button" id="simOpen" style="margin-top:14px">📱 Simular avisos</button>
-      </div>
-
-      <div class="rw-card" id="backupCard">
-        <h3>Respaldo de tu progreso <small>💾</small></h3>
-        <p class="sum-note" style="margin-top:6px">Tu progreso se guarda solo en este teléfono. Descarga un respaldo de vez en cuando para no perderlo si cambias de celular o borras el navegador.</p>
-        <div class="sum-actions">
-          <button class="btn btn-primary" type="button" id="bkDown">⬇ Descargar respaldo</button>
-          <button class="btn btn-ghost" type="button" id="bkUpBtn">⬆ Recuperar</button>
-          <input type="file" id="bkFile" accept=".json,application/json" hidden>
-        </div>
-        <p class="sum-note" id="bkNote"></p>
-        <details class="starter-quick">
-          <summary>¿No puedes descargar archivos? Usa un texto</summary>
-          <button class="reset" type="button" id="bkCopy">Copiar respaldo como texto</button>
-          <label class="field" style="display:block;margin-top:8px"><span>Pega aquí un respaldo para recuperarlo</span>
-            <textarea id="bkText" rows="3" style="width:100%;font:inherit;font-size:.85rem;padding:10px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink)"></textarea></label>
-          <button class="btn btn-ghost" type="button" id="bkPaste" style="margin-top:8px">Recuperar desde el texto</button>
-        </details>
-        <div class="bk-confirm" id="bkConfirm" hidden>
-          <p><b>¿Reemplazar tu progreso actual?</b><span id="bkInfo"></span></p>
-          <div class="sum-actions"><button class="btn btn-primary" type="button" id="bkYes">Sí, recuperar</button><button class="reset" type="button" id="bkNo">Cancelar</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Hábitos -->
-  <section class="block" id="habitos" aria-labelledby="h-habitos" data-sec="habitos">
-    <div class="wrap">
-      <h2 class="serif" id="h-habitos">Tus hábitos de hoy</h2>
-      <div class="gold-rule"></div>
-      <p class="sub">Márcalos al cumplirlos. Se reinician cada día.</p>
-
-      <div class="habits-card">
+      <div class="home-grid">
+      <section class="today-card tile" id="todayCard" aria-labelledby="todayTitle"></section>
+      <div class="plan-card tile" id="phaseCard" hidden></div>
+      <div class="habits-card habits-home tile" id="habitsHome">
+        <span class="tk" id="habK">Hábitos</span>
         <div class="habits-top">
           <div class="ring" aria-hidden="true">
             <svg viewBox="0 0 100 100">
@@ -1097,7 +1461,7 @@
           <input type="checkbox" data-habit="agua">
           <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <span class="habit-text">
-            <strong>Tomar 2,5 a 3 litros de agua</strong>
+            <strong>Tomar 2,5 a 3 litros de agua</strong><em class="hs">💧 Agua 2,5–3 L</em>
             <span id="waterTip">Lleva tu botella al gym.</span>
           </span>
           <span class="habit-icon" aria-hidden="true">💧</span>
@@ -1107,7 +1471,7 @@
           <input type="checkbox" data-habit="sueno">
           <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <span class="habit-text">
-            <strong>Dormir de 7 a 8 horas</strong>
+            <strong>Dormir de 7 a 8 horas</strong><em class="hs">😴 Dormir 7–8 h</em>
             <span>Así se recuperan tus músculos.</span>
           </span>
           <span class="habit-icon" aria-hidden="true">🌙</span>
@@ -1117,7 +1481,7 @@
           <input type="checkbox" data-habit="proteina">
           <span class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <span class="habit-text">
-            <strong>Comer suficiente proteína</strong>
+            <strong>Comer suficiente proteína</strong><em class="hs">🥚 Proteína</em>
             <span id="proteinTip">Una porción en cada comida.</span>
           </span>
           <span class="habit-icon" aria-hidden="true">🥚</span>
@@ -1127,8 +1491,23 @@
         </div>
         <button class="mini-btn" id="toggleHabits" type="button" hidden>Ver hábitos</button>
       </div>
+      <a class="next-meal tile" id="nextMeal" href="#comidas" hidden></a>
+      </div>
+      <div class="nudge" id="nudge" hidden>
+        <div class="nudge-cat" aria-hidden="true">💪</div>
+        <div class="nudge-txt">
+          <b id="nudgeTitle"></b><span id="nudgeBody"></span>
+          <div class="nudge-actions"><a id="nudgeGo" href="#rutina">Vamos</a><button type="button" id="nudgeLater">Hoy no</button></div>
+        </div>
+      </div>
+      <div class="cycle-card" id="cycleCard" hidden></div>
+
+
+
     </div>
   </section>
+
+
 
   <!-- Rutina -->
   <section class="block" id="rutina" aria-labelledby="h-rutina" data-sec="rutina">
@@ -1136,6 +1515,10 @@
       <h2 class="serif" id="h-rutina">Tu rutina de 3 días</h2>
       <div class="gold-rule"></div>
       <div class="how-row" id="howRow" aria-label="Cómo usar la rutina"><span><i>👆</i>Toca el dibujo para ver cómo se hace</span><span><i>🏋️</i>Anota tu peso</span><span><i>✓</i>Marca al terminar</span></div>
+      <div class="share-row">
+        <button type="button" class="btn btn-ghost" data-share="rutina">📤 Compartir rutina</button>
+        <button type="button" class="btn btn-ghost" data-share="progreso">📈 Compartir progreso</button>
+      </div>
 
       <p class="goal-banner" id="routineGoal" hidden></p>
 
@@ -1196,130 +1579,45 @@
       <datalist id="exCatalog"></datalist>
 
       <div class="coach-note"><strong>⬆ ¿Cuándo subir de peso?</strong> Si logras todas las reps 2 veces seguidas, sube 1 a 2,5 kg. La app te avisa sola. Los ejercicios cambian cada 4 semanas.</div>
-    </div>
-  </section>
-
-  <!-- Recomendaciones -->
-  <section class="block rec-head" aria-labelledby="h-rec" data-sec="recomendaciones">
-    <div class="wrap">
-      <h2 class="serif" id="h-rec">Consejos</h2>
-      <div class="gold-rule"></div>
-      <div class="seg seg3" role="tablist" aria-label="Tipo de recomendación">
-        <button type="button" role="tab" data-sub-go="primer" aria-selected="false">🎒 Primer día</button>
-        <button type="button" role="tab" data-sub-go="esencial" aria-selected="true">📋 Básico</button>
-        <button type="button" role="tab" data-sub-go="comida" aria-selected="false">🥗 Comida</button>
+      <div class="rut-help">
+        <a class="help-link pain" href="#pro" data-tips-pain><span aria-hidden="true">🩹</span><div><b>¿Te duele algo o sentiste un tirón?</b><small>Qué es normal, cuándo parar y cómo saber si hiciste mal un ejercicio</small></div><i aria-hidden="true">›</i></a>
+        <a class="help-link" href="#esencial"><span aria-hidden="true">🔥</span><div><b>Calentar, entrenar y estirar</b><small>Los 3 pasos de cada sesión</small></div><i aria-hidden="true">›</i></a>
       </div>
-    </div>
-  </section>
-
-  <section class="block rec-sub" id="esencial" aria-labelledby="h-esencial" data-sec="recomendaciones" data-sub="esencial">
-    <div class="wrap">
-      <h2 class="serif" id="h-esencial">Lo esencial del gym</h2>
-      <div class="gold-rule"></div>
-      <p class="sub">Antes y después: lo que más se salta y más se nota.</p>
-
-      <div class="timeline" aria-label="Estructura de una sesión">
-        <span>Calentamiento · 10 min</span>
-        <span class="mid">Entrenamiento</span>
-        <span>Estiramiento · 5–10 min</span>
-      </div>
-
-      <div class="ess-grid">
-        <div class="ess">
-          <span class="when">Antes de entrenar</span>
-          <h3>Calentamiento articular</h3>
-          <p>Menos lesiones, mejor técnica.</p>
-          <ul>
-            <li>🚶 5 min de cardio suave</li>
-            <li>🔄 Círculos de hombros, cadera, rodillas y tobillos</li>
-            <li>🪶 1 serie suave del primer ejercicio</li>
-          </ul>
-        </div>
-        <div class="ess after">
-          <span class="when">Después de entrenar</span>
-          <h3>Estiramiento</h3>
-          <p>Menos rigidez al día siguiente.</p>
-          <ul>
-            <li>🎯 Lo que trabajaste hoy</li>
-            <li>⏱ 20 a 30 s cada uno, respirando</li>
-            <li>🙅 Sin rebotes ni dolor</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pain-card">
-        <h3>¿Te duele después de entrenar?</h3>
-        <div class="pain-grid">
-          <div class="pain ok">
-            <b>✅ Normal</b>
-            <ul><li>Músculo cargado 1 a 3 días</li><li>Se siente en ambos lados</li><li>Mejora al moverte</li></ul>
-            <small>Sigue entrenando, más suave.</small>
-          </div>
-          <div class="pain stop">
-            <b>🛑 Para</b>
-            <ul><li>Dolor agudo o punzante</li><li>En la articulación</li><li>Hinchazón o dura más de 1 semana</li></ul>
-            <small>Consulta con un profesional.</small>
-          </div>
-        </div>
-        <p class="pain-alert">⚠️ Mareo, falta de aire fuerte o dolor en el pecho: detente ya y pide ayuda.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Primer día -->
-  <section class="block rec-sub sub-off" id="primer" aria-labelledby="h-primer" data-sec="recomendaciones" data-sub="primer">
-    <div class="wrap">
-      <h2 class="serif" id="h-primer">Tu primer día</h2>
-      <div class="gold-rule"></div>
-      <p class="sub">Todos empezaron alguna vez. 💪</p>
-
-      <div class="fd-card">
-        <h3>🎒 Tu bolso <small id="bagCount"></small></h3>
-        <div class="bag" id="bag">
-          <button type="button" data-bag="agua" aria-pressed="false"><i>💧</i>Botella</button>
-          <button type="button" data-bag="toalla" aria-pressed="false"><i>🧺</i>Toalla</button>
-          <button type="button" data-bag="zapas" aria-pressed="false"><i>👟</i>Zapatillas</button>
-          <button type="button" data-bag="candado" aria-pressed="false"><i>🔒</i>Candado</button>
-          <button type="button" data-bag="audif" aria-pressed="false"><i>🎧</i>Audífonos</button>
-          <button type="button" data-bag="snack" aria-pressed="false"><i>🍌</i>Colación</button>
-        </div>
-      </div>
-
-      <div class="fd-card">
-        <h3>🏋️ En el gym</h3>
-        <div class="fd-tiles">
-          <div><i>🙋</i><b>Pide ayuda</b><span>Que te muestren las máquinas. Es normal.</span></div>
-          <div><i>🪑</i><b>Ajusta la máquina</b><span>Asiento y apoyos a tu altura.</span></div>
-          <div><i>🧽</i><b>Limpia al terminar</b><span>Toalla o spray del gym.</span></div>
-          <div><i>🔁</i><b>Devuelve las pesas</b><span>A su lugar, siempre.</span></div>
-        </div>
-      </div>
-
-      <div class="fd-card">
-        <h3>🫶 Si te dan nervios</h3>
-        <div class="fd-tiles">
-          <div><i>🕐</i><b>Hora tranquila</b><span>Media mañana o después de las 21:00.</span></div>
-          <div><i>📱</i><b>Lleva tu rutina</b><span>Ya sabes qué hacer: está aquí.</span></div>
-          <div><i>🎧</i><b>Tu música</b><span>Y a lo tuyo.</span></div>
-          <div><i>🪶</i><b>Empieza liviano</b><span>La técnica primero, el peso después.</span></div>
-        </div>
-      </div>
-      <a class="btn btn-primary btn-block" href="#rutina" style="margin-top:20px">Ver mi rutina de hoy</a>
     </div>
   </section>
 
   <!-- Comida -->
-  <section class="block rec-sub sub-off" id="comida" aria-labelledby="h-comida" data-sec="recomendaciones" data-sub="comida">
+  <section class="block" id="comida" aria-labelledby="h-comida" data-sec="comidas">
     <div class="wrap">
-      <h2 class="serif" id="h-comida">Come para entrenar</h2>
+      <h2 class="serif" id="h-comida">Comidas</h2>
       <div class="gold-rule"></div>
-      <p class="sub">Sin dietas estrictas. Ideas según lo que te gusta.</p>
+      <p class="sub">Sin dietas estrictas: tu menú del día, medido con tu mano y con lo que te gusta.</p>
 
       <div class="food-sum">
         <div><b>Tus preferencias</b><span id="prefSummary">Como de todo</span></div>
         <a href="#perfil">Editar en tu perfil</a>
       </div>
       <div class="food-alert" id="slotNote" hidden></div>
+
+      <div class="menu-card" id="menuCard"></div>
+
+      <details class="menu-card shop">
+        <summary>🛒 Lista de compras de la semana <small id="shopCount"></small></summary>
+        <div id="shopBody"></div>
+      </details>
+
+      <div class="menu-card food-tips" id="foodTips"></div>
+
+      <details class="menu-card">
+        <summary>✋ Cómo medir con tu mano</summary>
+        <div class="hand-grid">
+          <div><i>✋</i><b>Palma</b><span>Proteína: pollo, carne, pescado, huevos, tofu. Del tamaño y grosor de tu palma, sin los dedos.</span></div>
+          <div><i>🤲</i><b>Mano ahuecada</b><span>Carbohidratos: arroz, fideos, papas, legumbres, fruta. Lo que cabe en tu mano formando un hueco.</span></div>
+          <div><i>✊</i><b>Puño</b><span>Verduras: ensaladas y verduras cocidas. Del tamaño de tu puño.</span></div>
+          <div><i>👍</i><b>Pulgar</b><span>Grasas: palta, aceite, frutos secos, mantequilla de maní. Del tamaño de tu pulgar.</span></div>
+        </div>
+        <p class="sum-note">Tu mano crece con tu cuerpo: por eso las porciones se ajustan solas a ti. No es tan exacto como pesar, pero es mucho más fácil de mantener.</p>
+      </details>
 
       <div class="plate-card">
         <h3>Arma tu plato</h3>
@@ -1370,14 +1668,247 @@
     </div>
   </section>
 
+  <!-- Consejos -->
+  <section class="block rec-head tips-bar" id="tipsBar" data-sec="consejos">
+    <div class="wrap">
+      <h2 class="serif" id="h-rec">Consejos</h2>
+      <div class="gold-rule"></div>
+      <div class="seg seg4 seg-tips" role="tablist" aria-label="Tipo de consejo">
+        <button type="button" role="tab" data-sub-go="primer" aria-selected="false">🎒 1.er día</button>
+        <button type="button" role="tab" data-sub-go="esencial" aria-selected="true">📋 Básico</button>
+        <button type="button" role="tab" data-sub-go="pro" aria-selected="false">💡 Pro</button>
+        <button type="button" role="tab" data-tips-dolor aria-selected="false">🩹 Dolor</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block rec-sub" id="esencial" aria-labelledby="h-esencial" data-sec="consejos" data-sub="esencial">
+    <div class="wrap">
+      <h2 class="serif" id="h-esencial">Lo esencial del gym</h2>
+      <div class="gold-rule"></div>
+      <p class="sub">Antes y después: lo que más se salta y más se nota.</p>
+
+      <ol class="flow" aria-label="Orden de una sesión">
+        <li><i aria-hidden="true">🔥</i><b>Calentar</b><small>10 min</small></li>
+        <li class="arrow" aria-hidden="true">›</li>
+        <li class="mid"><i aria-hidden="true">🏋️</i><b>Entrenar</b><small>Tu rutina</small></li>
+        <li class="arrow" aria-hidden="true">›</li>
+        <li><i aria-hidden="true">🧘</i><b>Estirar</b><small>5–10 min</small></li>
+      </ol>
+
+      <div class="ess-grid">
+        <div class="ess">
+          <span class="when">Antes de entrenar</span>
+          <h3>Calentamiento articular</h3>
+          <p>Menos lesiones, mejor técnica.</p>
+          <ul>
+            <li>🚶 5 min de cardio suave</li>
+            <li>🔄 Círculos de hombros, cadera, rodillas y tobillos</li>
+            <li>🪶 1 serie suave del primer ejercicio</li>
+          </ul>
+        </div>
+        <div class="ess after">
+          <span class="when">Después de entrenar</span>
+          <h3>Estiramiento</h3>
+          <p>Menos rigidez al día siguiente.</p>
+          <ul>
+            <li>🎯 Lo que trabajaste hoy</li>
+            <li>⏱ 20 a 30 s cada uno, respirando</li>
+            <li>🙅 Sin rebotes ni dolor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pain-card">
+        <h3>¿Te duele después de entrenar?</h3>
+        <div class="pain-grid">
+          <div class="pain ok">
+            <b>✅ Normal</b>
+            <ul><li>Músculo cargado 1 a 3 días</li><li>Se siente en ambos lados</li><li>Mejora al moverte</li></ul>
+            <small>Sigue entrenando, más suave.</small>
+          </div>
+          <div class="pain stop">
+            <b>🛑 Para</b>
+            <ul><li>Dolor agudo o punzante</li><li>En la articulación</li><li>Hinchazón o dura más de 1 semana</li></ul>
+            <small>Consulta con un profesional.</small>
+          </div>
+        </div>
+        <p class="pain-alert">⚠️ Mareo, falta de aire fuerte o dolor en el pecho: detente ya y pide ayuda.</p>
+        <a class="btn btn-ghost btn-block" href="#pro" data-tips-pain style="margin-top:12px;text-align:center">🩹 ¿Te duele la espalda u otra zona? Ver qué hacer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Primer día -->
+  <section class="block rec-sub sub-off" id="primer" aria-labelledby="h-primer" data-sec="consejos" data-sub="primer">
+    <div class="wrap">
+      <h2 class="serif" id="h-primer">Tu primer día</h2>
+      <div class="gold-rule"></div>
+      <p class="sub">Todos empezaron alguna vez. 💪</p>
+
+      <div class="fd-card">
+        <h3>🎒 Tu bolso <small id="bagCount"></small></h3>
+        <div class="bag" id="bag">
+          <button type="button" data-bag="agua" aria-pressed="false"><i>💧</i>Botella</button>
+          <button type="button" data-bag="toalla" aria-pressed="false"><i>🧺</i>Toalla</button>
+          <button type="button" data-bag="zapas" aria-pressed="false"><i>👟</i>Zapatillas</button>
+          <button type="button" data-bag="candado" aria-pressed="false"><i>🔒</i>Candado</button>
+          <button type="button" data-bag="audif" aria-pressed="false"><i>🎧</i>Audífonos</button>
+          <button type="button" data-bag="snack" aria-pressed="false"><i>🍌</i>Colación</button>
+        </div>
+      </div>
+
+      <div class="fd-card">
+        <h3>🏋️ En el gym</h3>
+        <div class="fd-tiles">
+          <div><i>🙋</i><b>Pide ayuda</b><span>Que te muestren las máquinas. Es normal.</span></div>
+          <div><i>🪑</i><b>Ajusta la máquina</b><span>Asiento y apoyos a tu altura.</span></div>
+          <div><i>🧽</i><b>Limpia al terminar</b><span>Toalla o spray del gym.</span></div>
+          <div><i>🔁</i><b>Devuelve las pesas</b><span>A su lugar, siempre.</span></div>
+        </div>
+      </div>
+
+      <div class="fd-card">
+        <h3>🫶 Si te dan nervios</h3>
+        <div class="fd-tiles">
+          <div><i>🕐</i><b>Hora tranquila</b><span>Media mañana o después de las 21:00.</span></div>
+          <div><i>📱</i><b>Lleva tu rutina</b><span>Ya sabes qué hacer: está aquí.</span></div>
+          <div><i>🎧</i><b>Tu música</b><span>Y a lo tuyo.</span></div>
+          <div><i>🪶</i><b>Empieza liviano</b><span>La técnica primero, el peso después.</span></div>
+        </div>
+      </div>
+      <a class="btn btn-primary btn-block" href="#rutina" style="margin-top:20px">Ver mi rutina de hoy</a>
+    </div>
+  </section>
+
+  <!-- Consejos pro -->
+  <section class="block rec-sub sub-off" id="pro" aria-labelledby="h-pro" data-sec="consejos" data-sub="pro">
+    <div class="wrap">
+      <h2 class="serif" id="h-pro">Consejos que marcan la diferencia</h2>
+      <div class="gold-rule"></div>
+      <p class="sub">Lo que no es tan obvio. Toca cada tema para abrirlo; los marcados con ⭐ son para tu objetivo.</p>
+      <div class="tips" id="tipsList">
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🏗️</span><span><b>Qué priorizar (y qué no)</b><small>El 90&nbsp;% del resultado sale de 5 cosas. Los suplementos van al final.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>1. Constancia:</b> el mejor plan es el que puedes seguir meses. 3 días a la semana sin fallar le gana a 6 días por 2 semanas.</li><li><b>2. Calorías totales:</b> deciden si bajas, mantienes o subes de peso. Ningún alimento “engorda” o “quema” por sí solo.</li><li><b>3. Proteína:</b> 1,6 a 2,2 g por kilo de peso al día, repartida en 3 a 5 comidas.</li><li><b>4. Sueño:</b> 7 a 9 horas. Es cuando el músculo se recupera.</li><li><b>5. Progresión:</b> más peso o más reps con buena técnica, semana a semana.</li><li><b>Lo último:</b> suplementos, horarios exactos de comida, “ventana anabólica” y ejercicios “secretos”.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="bajar">
+          <summary><span class="tip-ic" aria-hidden="true">🔥</span><span><b>Si estás en déficit (bajando grasa)</b><small>Cómo bajar grasa sin perder músculo ni energía.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Déficit moderado:</b> apunta a bajar 0,5 a 1&nbsp;% de tu peso por semana (unos 0,4 a 0,8 kg si pesas 80 kg). Más rápido suele costar músculo y energía.</li><li><b>Sube la proteína:</b> en déficit conviene la parte alta, cerca de 2 g por kilo. Es lo que más protege tu músculo y la que más quita el hambre.</li><li><b>No cambies a “pesos livianos para definir”:</b> sigue entrenando pesado. Es la señal que le dice al cuerpo que conserve el músculo. Si estás muy cansado, baja series, no el peso.</li><li><b>Camina:</b> en déficit el cuerpo se mueve menos sin que lo notes. 7.000 a 10.000 pasos al día ayudan más que sumar cardio intenso.</li><li><b>Come con volumen:</b> verduras, sopas, fruta y proteína magra llenan mucho con pocas calorías.</li><li><b>Mira el promedio, no el día:</b> el peso sube y baja 1 a 2 kg por agua, sal o carbohidratos. Pésate en la mañana y compara el promedio de la semana.</li><li><b>El fin de semana cuenta:</b> 2 días de comer libre pueden borrar el déficit de los otros 5.</li><li><b>Es normal</b> que la fuerza se estanque un poco. Si mantienes tus pesos, vas muy bien.</li><li><b>Pausas:</b> después de 8 a 12 semanas de déficit, 1 o 2 semanas comiendo para mantener ayudan a descansar la cabeza y el cuerpo.</li></ul><p class="tip-note">Evita dietas muy bajas en calorías sin supervisión de un profesional.</p>
+        </details>
+        <details class="tip-card" data-goal="ganar">
+          <summary><span class="tip-ic" aria-hidden="true">💪</span><span><b>Si quieres ganar músculo</b><small>Lo que de verdad hace crecer, y cuánto esperar.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Superávit pequeño:</b> unas 200 a 300 calorías sobre lo que necesitas. Subir 0,25 a 0,5&nbsp;% de tu peso por semana basta; más rápido suele ser más grasa, no más músculo.</li><li><b>Proteína todos los días:</b> 1,6 a 2,2 g por kilo, repartida en 3 a 5 comidas de unos 25 a 40 g cada una.</li><li><b>Series efectivas:</b> unas 10 a 20 series por músculo a la semana, terminando cada serie con 0 a 3 repeticiones en reserva.</li><li><b>Progresión:</b> si no sube el peso o las reps en varias semanas, no estás creciendo. Para eso está el registro de la app.</li><li><b>Paciencia:</b> en el primer año, un hombre puede ganar en torno a 0,5 a 1 kg de músculo al mes en buenas condiciones. Después es más lento.</li><li><b>El cardio no “mata” las ganancias</b> si es moderado. Mejor después de las pesas o en otro momento del día.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🧂</span><span><b>Hidratación y electrolitos</b><small>Lo que no te dicen del agua y la sal.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Al sudar pierdes sobre todo sodio</b>, no solo agua. En sesiones largas (más de 60 a 90 minutos), con mucho calor o si sudas mucho, solo agua puede no bastar.</li><li><b>Cómo saber si te falta agua:</b> orina color amarillo claro es buena señal; oscura, toma más.</li><li><b>Antes:</b> un vaso grande de agua 1 a 2 horas antes de entrenar.</li><li><b>Después:</b> si te pesas antes y después, toma alrededor de 1,25 a 1,5 litros por cada kilo que bajaste.</li><li><b>Electrolitos caseros:</b> 500 ml de agua + una pizca de sal + jugo de medio limón. O una bebida isotónica en sesiones largas.</li><li><b>En déficit o comiendo muy “limpio”</b> se consume menos sal: si te sientes mareado o sin fuerzas entrenando, puede ser falta de sodio y agua.</li><li><b>Calambres:</b> no siempre son electrolitos; la fatiga muscular también influye.</li></ul><p class="tip-note">Si tienes presión alta, enfermedad renal o del corazón, consulta con tu médico antes de agregar sal.</p>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">😴</span><span><b>Sueño y recuperación</b><small>Sin dormir bien, el plan rinde la mitad.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>7 a 9 horas:</b> dormir poco baja tu fuerza, sube el hambre y, en déficit, hace que pierdas más músculo y menos grasa.</li><li><b>Mismo horario</b> para acostarte y levantarte, también el fin de semana.</li><li><b>Cafeína:</b> evítala 6 a 8 horas antes de dormir (café, bebidas energéticas, pre-entrenos).</li><li><b>Pieza oscura, fresca y sin pantallas</b> la última media hora.</li><li><b>Dolor muscular (agujetas):</b> no significa que el entreno fue mejor. Desaparece a medida que te acostumbras.</li><li><b>Descarga:</b> cada 6 a 12 semanas, una semana con la mitad de series y algo menos de peso. Vuelves más fuerte.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">💊</span><span><b>Suplementos que sí tienen evidencia</b><small>Pocos funcionan. Estos sí, y nada reemplaza la comida.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Creatina monohidrato:</b> 3 a 5 g todos los días, a cualquier hora, sin “fase de carga”. Ayuda a la fuerza y al músculo. Puede subir 1 a 2 kg de agua dentro del músculo: no es grasa. Muy útil si eres vegetariano.</li><li><b>Cafeína:</b> unos 3 mg por kilo de peso, 30 a 60 minutos antes de entrenar, mejora el rendimiento. No pases de 400 mg al día.</li><li><b>Proteína en polvo:</b> no es mágica, es comida práctica. Úsala solo si te cuesta llegar a tu proteína.</li><li><b>Vitamina D:</b> solo si tienes déficit (examen de sangre). Habla con tu médico.</li><li><b>No gastes en:</b> quemadores de grasa, “detox”, BCAA (si ya comes suficiente proteína) ni fórmulas con muchos ingredientes secretos.</li></ul><p class="tip-note">Si tienes alguna enfermedad (por ejemplo renal) o tomas medicamentos, consulta antes de usar cualquier suplemento.</p>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🏋️</span><span><b>Técnica y entrenamiento inteligente</b><small>Detalles que separan a quien progresa de quien se estanca.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Repeticiones en reserva (RIR):</b> al terminar una serie, piensa cuántas más podrías haber hecho con buena técnica. Apunta a 1 a 3. Así entrenas duro sin lesionarte.</li><li><b>Descansa lo suficiente:</b> 2 a 3 minutos en ejercicios pesados (sentadilla, press, remo). Descansar poco no quema más grasa; solo te deja hacer menos.</li><li><b>Rango completo:</b> baja controlado y haz el recorrido completo antes de subir el peso.</li><li><b>Calienta con series livianas</b> del primer ejercicio (la app te las sugiere), no solo con cardio.</li><li><b>Dolor agudo en una articulación:</b> detente. Cambia el ejercicio o el ángulo; no “aguantes”.</li><li><b>Anota todo:</b> lo que no se mide no se puede mejorar.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🧠</span><span><b>Mitos comunes</b><small>Cosas que se escuchan mucho y no son ciertas.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>“Abdominales para bajar la guata”:</b> no se puede quemar grasa de una sola zona. Baja con déficit; los abdominales fortalecen, no queman ahí.</li><li><b>“Tonificar” es distinto a ganar músculo:</b> no. Tonificar es ganar algo de músculo y perder algo de grasa.</li><li><b>“Comer de noche engorda”:</b> lo que cuenta son las calorías del día, no la hora.</li><li><b>“Sudar más = quemar más grasa”:</b> sudar es perder agua; la recuperas al tomar.</li><li><b>“Mucha proteína daña los riñones”:</b> en personas sanas no hay evidencia de eso con las cantidades que recomendamos. Si tienes enfermedad renal, consulta.</li><li><b>“Hay que comer cada 3 horas”:</b> da lo mismo 3 o 5 comidas si llegas a tus calorías y proteína.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="bajar ganar">
+          <summary><span class="tip-ic" aria-hidden="true">🍺</span><span><b>Alcohol, comida fuera y vida social</b><small>Puedes tener vida social y avanzar igual.</small></span><em class="tip-mine">⭐ Para ti</em></summary>
+          <ul><li><b>Alcohol:</b> empeora el sueño y la recuperación, y tiene muchas calorías (una cerveza grande ronda las 250 a 300). Si tomas, mejor poco y no el día de piernas.</li><li><b>Comida fuera:</b> elige primero una proteína (pollo, carne, pescado), suma verduras y deja los carbohidratos a tu porción.</li><li><b>Asados:</b> prioriza la carne magra y la ensalada; ojo con el pan, los embutidos y las bebidas.</li><li><b>Un mal día no arruina nada:</b> al día siguiente vuelves a tu plan normal, sin “compensar” dejando de comer.</li></ul>
+        </details>
+      </div>
+      <h3 class="tips-h" id="dolor">🩹 Dolor, molestias y técnica</h3>
+      <div class="tips">
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🚦</span><span><b>¿Dolor normal o lesión?</b><small>Un semáforo simple para decidir si sigues, ajustas o paras.</small></span></summary>
+          <ul><li><b class="ok">🟢 Normal, sigue:</b> ardor o cansancio en el músculo durante la serie; dolor muscular 1 a 3 días después (agujetas), en ambos lados, que mejora al moverte.</li><li><b class="warn">🟡 Ajusta:</b> molestia leve en una articulación (3 o menos de 10) que no empeora durante la sesión y se va en menos de 24 horas. Baja el peso, acorta el rango o cambia el ejercicio, y observa.</li><li><b class="bad">🔴 Para y consulta:</b> dolor agudo o punzante, un “pinchazo” o chasquido con dolor, hinchazón, pérdida de fuerza, dolor que empeora durante la sesión o que dura más de una semana.</li><li><b class="bad">🚨 Emergencia:</b> dolor en el pecho, falta de aire fuerte, mareo o desmayo. Detente y pide ayuda (en Chile, SAMU 131).</li></ul><div class="tip-act"><button type="button" class="btn btn-ghost" data-painedit>🩹 Marcar la molestia en mi perfil</button><small>Cambiamos los ejercicios que suelen molestar en esa zona.</small></div>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🧍</span><span><b>Si te empezó a doler la espalda</b><small>La mayoría de los dolores de espalda baja por entrenar son musculares y mejoran en días o pocas semanas.</small></span></summary>
+          <ul><li><b>No te quedes en cama:</b> moverte suave (caminar, movilidad) ayuda a recuperarte más rápido que el reposo total.</li><li><b>Saca por unos días</b> el peso muerto, la sentadilla con barra y el remo inclinado. Usa ejercicios con apoyo: remo con apoyo de pecho, jalón, extensión y curl femoral en máquina.</li><li><b>Calor local</b> y caminatas cortas suelen aliviar.</li><li><b>Vuelve de a poco:</b> retoma con la mitad del peso y sube en 1 a 3 semanas, mientras no duela.</li><li><b>Revisa la técnica:</b> espalda neutra (sin redondear) en peso muerto y remo; antes de bajar, toma aire y aprieta el abdomen; en la sentadilla baja solo hasta donde tu pelvis no se “enrosque”; no arquees la zona lumbar en el press de hombros ni en el hip thrust.</li><li><b>Anda al médico de inmediato si:</b> el dolor baja por la pierna más allá de la rodilla con hormigueo, adormecimiento o debilidad; pierdes el control de la orina o las deposiciones, o sientes adormecida la zona de la entrepierna (urgencia); tienes fiebre, bajas de peso sin razón o el dolor es fuerte de noche aunque no te muevas; fue después de una caída o golpe.</li><li><b>Consulta también</b> con un médico o kinesiólogo si en 2 semanas no mejora o va empeorando.</li></ul><div class="tip-act"><button type="button" class="btn btn-ghost" data-painedit>🩹 Marcar la molestia en mi perfil</button><small>Cambiamos los ejercicios que suelen molestar en esa zona.</small></div>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🎯</span><span><b>¿Cómo saber si hiciste mal un ejercicio?</b><small>Señales de que la técnica o el peso no van, y cómo corregirlo.</small></span></summary>
+          <ul><li><b>Lo sientes en el lugar equivocado:</b> espalda baja en sentadilla, peso muerto o remo; parte de adelante del hombro en press de banca o fondos; pinchazo en la rodilla en zancadas o prensa; codo en curl o tríceps; cuello en abdominales.</li><li><b>Dolor en la articulación, no en el músculo:</b> el músculo arde y se cansa; la articulación “pincha”. Si pincha, algo está mal.</li><li><b>Pierdes la forma al final de la serie:</b> espalda que se redondea, rodillas que se van hacia adentro, rebotes o balanceo. Es señal de que el peso está muy alto.</li><li><b>Te tuerces</b> o un lado hace más fuerza que el otro.</li><li><b>Grábate de lado</b> con el celular y compárate con el dibujo de la app (tócalo en tu rutina).</li><li><b>Prueba:</b> baja el peso un 20 a 30 % y haz la serie lenta, 3 segundos al bajar. Si así no molesta, el problema era la técnica o la carga.</li><li><b>Pide ayuda</b> a un profesor del gym para que revise tu técnica: es parte de su trabajo.</li></ul>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🦴</span><span><b>Molestias por zona: qué cambiar</b><small>Ajustes simples para seguir entrenando sin empeorar.</small></span></summary>
+          <ul><li><b>Rodilla:</b> rodillas en línea con la punta del pie, sin que se vayan hacia adentro. Baja solo hasta donde no duela. Cambia zancadas por puente o hip thrust, y usa poco peso en extensión de cuádriceps.</li><li><b>Hombro:</b> en los press, codos a unos 45° del cuerpo (no abiertos en cruz) y agarre un poco más cerrado. Usa mancuernas en vez de barra, acorta el rango, evita los fondos y el press tras nuca, y suma face pull.</li><li><b>Muñeca:</b> mantenla recta, alineada con el antebrazo. Usa agarre neutro (palmas mirándose) y haz flexiones apoyando los puños o sobre mancuernas.</li><li><b>Codo:</b> menos peso en curl y tríceps, agarre tipo martillo y sin “golpear” al estirar el brazo.</li><li><b>Cuello:</b> mirada neutra, sin tirar de la cabeza en los abdominales ni encoger los hombros al levantar.</li></ul><div class="tip-act"><button type="button" class="btn btn-ghost" data-painedit>🩹 Marcar la molestia en mi perfil</button><small>Cambiamos los ejercicios que suelen molestar en esa zona.</small></div><p class="tip-note">Si una molestia no mejora con estos cambios en 1 a 2 semanas, consulta con un kinesiólogo.</p>
+        </details>
+        <details class="tip-card" data-goal="all">
+          <summary><span class="tip-ic" aria-hidden="true">🔄</span><span><b>Volver después de una lesión o una pausa</b><small>Cómo retomar sin recaer.</small></span></summary>
+          <ul><li><b>Semana 1:</b> 50 a 60 % del peso que usabas y 2 series por ejercicio.</li><li><b>Después:</b> sube un 10 a 20 % por semana mientras no duela, ni durante ni al día siguiente.</li><li><b>Entrena el rango sin dolor</b> y amplíalo de a poco.</li><li><b>La fuerza vuelve rápido:</b> después de unas semanas sin entrenar, recuperas lo perdido mucho más rápido de lo que te costó ganarlo.</li><li><b>Si te trató un kinesiólogo,</b> sus indicaciones van primero que esta guía.</li></ul>
+        </details>
+      </div>
+      <p class="food-note" style="margin-top:20px">Guía general basada en la evidencia actual en nutrición y entrenamiento. No reemplaza la indicación de tu médico o nutricionista.</p>
+    </div>
+  </section>
+
+
   <!-- Tú: perfil y avance -->
   <section class="block rec-head" aria-labelledby="h-tu" data-sec="tu">
     <div class="wrap">
       <h2 class="serif" id="h-tu">Tu espacio</h2>
       <div class="gold-rule"></div>
-      <div class="seg" role="tablist" aria-label="Tu espacio">
-        <button type="button" role="tab" data-sub-go="perfil" aria-selected="true">👤 Tu perfil</button>
+      <div class="seg seg3" role="tablist" aria-label="Tu espacio">
+        <button type="button" role="tab" data-sub-go="perfil" aria-selected="true">👤 Perfil</button>
         <button type="button" role="tab" data-sub-go="avance" aria-selected="false">📏 Avance</button>
+        <button type="button" role="tab" data-sub-go="ajustes" aria-selected="false">⚙️ Ajustes</button>
+      </div>
+    </div>
+  </section>
+  <!-- Recomendaciones -->
+  <!-- Tú: ajustes (antes en Inicio) -->
+  <section class="block rec-sub sub-off" id="ajustes" aria-labelledby="h-ajustes" data-sec="tu" data-sub="ajustes">
+    <div class="wrap">
+      <h2 class="serif" id="h-ajustes">Ajustes</h2>
+      <div class="gold-rule"></div>
+      <p class="sub">Avisos al teléfono, guía de la app y respaldo de tu progreso.</p>
+      <div class="rw-card" id="remCard" style="margin-top:22px">
+        <h3>Recordatorios <small>🔔</small></h3>
+        <label class="rem-row"><span>Día de entrenamiento<small>Si es tu día y no has marcado tu sesión</small></span><span class="switch"><input type="checkbox" id="remTrain" checked><i></i></span></label>
+        <label class="rem-row"><span>Hábitos del día<small>Si te faltan hábitos por marcar</small></span><span class="switch"><input type="checkbox" id="remHab" checked><i></i></span></label>
+        <label class="rem-row"><span>Hora del primer aviso<small>Si no marcas nada, te recuerda otra vez 2 horas después</small></span>
+          <select class="rem-time" id="remTime"><option value="7">07:00</option><option value="8">08:00</option><option value="9">09:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19" selected>19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option></select></label>
+        <p class="sum-note" id="remNote"></p>
+        <div class="sum-actions">
+          <button class="btn btn-primary" type="button" id="notifBtn">🔔 Activar avisos</button>
+          <button class="reset" type="button" id="testPush" hidden>Enviar aviso de prueba</button>
+        </div>
+        <p class="sum-note" id="notifNote"></p>
+        <button class="btn btn-ghost btn-block" type="button" data-tour="open" style="margin-top:14px">👋 Ver la guía de la app</button>
+        <button class="btn btn-ghost btn-block" type="button" data-install style="margin-top:10px">📲 Cómo instalar la app</button>
+        <button class="btn btn-ghost btn-block" type="button" id="simOpen" style="margin-top:10px">📱 Ver un aviso de ejemplo</button>
+      </div>
+
+      <div class="rw-card" id="backupCard">
+        <h3>Respaldo de tu progreso <small>💾</small></h3>
+        <p class="sum-note" style="margin-top:6px">Tu progreso se guarda solo en este teléfono. Descarga un respaldo de vez en cuando para no perderlo si cambias de celular o borras el navegador.</p>
+        <div class="sum-actions">
+          <button class="btn btn-primary" type="button" id="bkDown">⬇ Descargar respaldo</button>
+          <button class="btn btn-ghost" type="button" id="bkUpBtn">⬆ Recuperar</button>
+          <input type="file" id="bkFile" accept=".json,application/json" hidden>
+        </div>
+        <p class="sum-note" id="bkNote"></p>
+        <details class="starter-quick">
+          <summary>¿No puedes descargar archivos? Usa un texto</summary>
+          <button class="reset" type="button" id="bkCopy">Copiar respaldo como texto</button>
+          <label class="field" style="display:block;margin-top:8px"><span>Pega aquí un respaldo para recuperarlo</span>
+            <textarea id="bkText" rows="3" style="width:100%;font:inherit;font-size:.85rem;padding:10px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface-2);color:var(--ink)"></textarea></label>
+          <button class="btn btn-ghost" type="button" id="bkPaste" style="margin-top:8px">Recuperar desde el texto</button>
+        </details>
+        <div class="bk-confirm" id="bkConfirm" hidden>
+          <p><b>¿Reemplazar tu progreso actual?</b><span id="bkInfo"></span></p>
+          <div class="sum-actions"><button class="btn btn-primary" type="button" id="bkYes">Sí, recuperar</button><button class="reset" type="button" id="bkNo">Cancelar</button></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1387,7 +1918,7 @@
     <div class="wrap">
       <h2 class="serif" id="h-avance">Tu avance</h2>
       <div class="gold-rule"></div>
-      <p class="sub">Opcional. Muchas veces la cintura cambia aunque la balanza no se mueva.</p>
+      <p class="sub">Pésate 2 o 3 veces por semana y mide tu cintura cada 2 semanas. Muchas veces la cintura cambia aunque la balanza no se mueva.</p>
       <div class="rw-card prog-card" id="progCard" style="margin-top:22px">
         <div class="prog-tiles" id="progTiles"></div>
         <div class="prog-form">
@@ -1396,6 +1927,24 @@
           <button class="btn btn-primary" type="button" id="mSave">Guardar hoy</button>
         </div>
         <p class="prog-hint" id="progHint">Anótalo cada 2 semanas, en ayunas.</p>
+      </div>
+      <div class="rw-card" id="weekCard">
+        <h3>Tu resumen semanal <small id="sumRange"></small></h3>
+        <div id="sumBody"></div>
+        <div class="sum-actions"><button class="reset" type="button" id="demoWeek" hidden>Ver ejemplo</button></div>
+      </div>
+      <div class="rw-card" id="chartCard">
+        <h3>📊 Tus gráficos <small id="chEx" hidden>Ejemplo</small></h3>
+        <div class="ttl-row" id="chTabs" role="tablist" aria-label="Gráfico" style="margin-top:10px"></div>
+        <p class="ch-cap" id="chCap" aria-live="polite"></p>
+        <div class="ch-box" id="chBox"></div>
+        <div class="ttl-row" id="chEx2" style="margin-top:8px"></div>
+        <p class="sum-note" id="chNote"></p>
+      </div>
+      <div class="rw-card" id="trendBox" hidden></div>
+      <div class="rw-card" id="prCard">
+        <h3>🏆 Tus récords <small id="prCount"></small></h3>
+        <div id="prList"></div>
       </div>
     </div>
   </section>
@@ -1585,13 +2134,14 @@
           <h3><span class="num">1</span>Sobre ti</h3>
           <div class="field-row">
             <label class="field"><span>Tu nombre</span><input type="text" id="pName" autocomplete="given-name" placeholder="Ej. Matías" maxlength="30"></label>
-            <label class="field"><span>Edad</span><input type="number" id="pAge" inputmode="numeric" min="12" max="99" placeholder="Ej. 28"></label>
+            <label class="field"><span>Edad</span><input type="number" id="pAge" inputmode="numeric" min="14" max="99" placeholder="Ej. 28" required aria-describedby="bodyWhy"></label>
           </div>
           <div class="field-row-3">
-            <label class="field"><span>Peso (kg) <em>opcional</em></span><input type="number" id="pWeight" inputmode="decimal" min="30" max="250" step="0.1" placeholder="Ej. 78"><small class="why">Para tu proteína</small></label>
-            <label class="field"><span>Estatura (cm) <em>opcional</em></span><input type="number" id="pHeight" inputmode="numeric" min="120" max="220" placeholder="Ej. 176"></label>
+            <label class="field"><span>Peso (kg)</span><input type="number" id="pWeight" inputmode="decimal" min="35" max="250" step="0.1" placeholder="Ej. 78" required aria-describedby="bodyWhy"></label>
+            <label class="field"><span>Estatura (cm)</span><input type="number" id="pHeight" inputmode="numeric" min="120" max="220" placeholder="Ej. 176" required aria-describedby="bodyWhy"></label>
             <label class="field"><span>Cintura (cm) <em>opcional</em></span><input type="number" id="pWaist" inputmode="decimal" min="40" max="200" step="0.5" placeholder="Ej. 88"></label>
           </div>
+          <p class="body-why" id="bodyWhy">🔒 Edad, peso y estatura son para calcular tus calorías y tu proteína. Se guardan solo en tu teléfono.</p>
         </div>
 
         <div class="form-step">
@@ -1681,7 +2231,7 @@
         <div class="form-step">
           <h3><span class="num">4</span>Cuidemos tu cuerpo</h3>
           <p class="step-why">Con esto cambiamos los ejercicios que podrían molestarte.</p>
-          <fieldset class="field-group">
+          <fieldset class="field-group" id="painSet">
             <legend>¿Tienes alguna molestia o lesión hoy?</legend>
             <div class="pills"><label class="pill"><input type="checkbox" name="pain" value="rodilla"><span>Rodilla</span></label><label class="pill"><input type="checkbox" name="pain" value="espalda"><span>Espalda baja</span></label><label class="pill"><input type="checkbox" name="pain" value="hombro"><span>Hombro</span></label><label class="pill"><input type="checkbox" name="pain" value="muneca"><span>Muñeca</span></label></div>
           </fieldset>
@@ -1757,9 +2307,9 @@
 <nav class="bottom-nav" aria-label="Secciones">
   <div class="nav-inner">
     <button class="nav-btn" type="button" data-go="rutina"><span aria-hidden="true">🏋️</span>Rutina</button>
-    <button class="nav-btn" type="button" data-go="habitos"><span aria-hidden="true">💧</span>Hábitos</button>
+    <button class="nav-btn" type="button" data-go="comidas"><span aria-hidden="true">🍽️</span>Comidas</button>
     <button class="nav-btn nav-home" type="button" data-go="inicio" aria-label="Inicio"><span aria-hidden="true">⚡</span>Inicio</button>
-    <button class="nav-btn" type="button" data-go="recomendaciones"><span aria-hidden="true">📋</span>Consejos</button>
+    <button class="nav-btn" type="button" data-go="consejos"><span aria-hidden="true">💡</span>Consejos</button>
     <button class="nav-btn" type="button" data-go="tu"><span aria-hidden="true">👤</span>Tú</button>
   </div>
 </nav>
@@ -1812,6 +2362,86 @@
   </div>
 </div>
 
+<div class="rest-bar" id="restBar" hidden role="timer">
+  <div class="rest-fill" id="restFill"></div>
+  <span class="rest-label" id="restLabel">Descanso</span>
+  <b class="rest-time" id="restTime">0:00</b>
+  <button type="button" data-rest="-15" aria-label="Restar 15 segundos">−15</button>
+  <button type="button" data-rest="15" aria-label="Sumar 15 segundos">+15</button>
+  <button type="button" data-rest="skip" aria-label="Terminar descanso">✕</button>
+</div>
+
+<div class="ex-sheet" id="levelSheet" hidden role="dialog" aria-modal="true" aria-labelledby="lvTitle">
+  <div class="sheet-panel">
+    <button class="sheet-x" type="button" data-close aria-label="Cerrar">✕</button>
+    <h3 id="lvTitle" class="sim-h">🏅 Tu nivel</h3>
+    <div class="lv-sum" id="lvSum"></div>
+    <p class="lv-how">💪 <b>+10 XP</b> por cada ejercicio · 💧 <b>+5 XP</b> por cada hábito. Al subir de nivel desbloqueas colores, frases y chapitas.</p>
+    <div class="rw-card">
+      <h3>Tus chapitas <small id="pinCount"></small></h3>
+      <div class="pins" id="pins"></div>
+      <button class="reset pins-more" type="button" id="pinsMore" aria-expanded="false">Ver todas</button>
+      <p class="pin-hint" id="pinHint" aria-live="polite">Toca una chapita para ver cómo se gana.</p>
+    </div>
+
+    <div class="rw-card">
+      <h3>Tus recompensas <small id="rwCount"></small></h3>
+      <p class="rw-label">Tu avatar</p>
+      <div class="rw-row" id="avatars"></div>
+      <p class="rw-label">Tu título</p>
+      <div class="ttl-row" id="titles"></div>
+      <p class="rw-label">Frase de hoy</p>
+      <div class="phrase" id="phrase"></div>
+      <p class="phrase-meta" id="phraseMeta"></p>
+    </div>
+  </div>
+</div>
+<div class="ex-sheet" id="shareSheet" hidden role="dialog" aria-modal="true" aria-labelledby="shTitle">
+  <div class="sheet-panel">
+    <button class="sheet-x" type="button" data-close aria-label="Cerrar">✕</button>
+    <h3 id="shTitle" class="sim-h">📤 Compartir</h3>
+    <div class="seg" role="tablist" aria-label="Qué compartir" style="margin-top:12px">
+      <button type="button" role="tab" data-shmode="progreso" aria-selected="true">📈 Mi progreso</button>
+      <button type="button" role="tab" data-shmode="rutina" aria-selected="false">🏋️ Mi rutina</button>
+      <button type="button" role="tab" data-shmode="graficos" aria-selected="false">📊 Gráficos</button>
+    </div>
+    <p class="sum-note" id="shNote" style="margin-top:10px"></p>
+    <p class="rw-label">Diseño <small style="font-weight:500">· se desbloquean más al subir de nivel</small></p>
+    <div class="ttl-row" id="cardDesigns"></div>
+    <div class="card-prev"><img id="cardPrev" alt="Vista previa de la imagen"></div>
+    <div class="sum-actions"><button class="btn btn-primary" type="button" id="cardShare">📤 Compartir</button><button class="btn btn-ghost" type="button" id="cardSave">⬇ Guardar imagen</button></div>
+  </div>
+</div>
+<div class="ex-sheet" id="calSheet" hidden role="dialog" aria-modal="true" aria-labelledby="calTitle">
+  <div class="sheet-panel">
+    <button class="sheet-x" type="button" data-close aria-label="Cerrar">✕</button>
+    <h3 id="calTitle" class="sim-h">📅 Tu calendario</h3>
+    <div id="calBody"></div>
+  </div>
+</div>
+<div class="ex-sheet" id="installSheet" hidden role="dialog" aria-modal="true" aria-labelledby="installTitle">
+  <div class="sheet-panel">
+    <button class="sheet-x" type="button" data-close aria-label="Cerrar">✕</button>
+    <h3 id="installTitle" class="sim-h">📲 Instala la app</h3>
+    <p class="sim-sub">Queda como una app más en tu pantalla de inicio: se abre a pantalla completa, más rápido y sin la barra del navegador.</p>
+    <div class="seg" role="tablist" aria-label="Tu teléfono"><button type="button" role="tab" data-os="ios" aria-selected="true">📱 iPhone</button><button type="button" role="tab" data-os="android" aria-selected="false">🤖 Android</button></div>
+    <p class="ios-why" data-for="ios">🔔 <b>En iPhone es necesario instalarla</b> para recibir los avisos de entrenamiento y hábitos (iOS 16.4 o más nuevo).</p>
+    <ol class="steps" data-for="ios"><li><span class="st-n">1</span><div><b>Abre la app en Safari</b><span>Si la abriste desde WhatsApp o Instagram, toca <b>···</b> y elige “Abrir en Safari”.</span><span class="ui-btn">🧭<em>Safari</em></span></div></li><li><span class="st-n">2</span><div><b>Toca el botón Compartir</b><span>Está en la barra de abajo (en iPad, arriba): un cuadrado con una flecha hacia arriba.</span><span class="ui-btn"><svg viewBox="0 0 24 24" class="ico"><path d="M12 3v12M7 8l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>Compartir</em></span></div></li><li><span class="st-n">3</span><div><b>Elige “Agregar a inicio”</b><span>Desliza la lista hacia abajo hasta encontrarlo.</span><span class="ui-btn"><svg viewBox="0 0 24 24" class="ico"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>Agregar a inicio</em></span></div></li><li><span class="st-n">4</span><div><b>Toca “Agregar”</b><span>Arriba a la derecha. Aparece el ícono de la mancuerna en tu pantalla de inicio.</span><span class="ui-btn"><b class="ico-t">Agregar</b><em></em></span></div></li><li><span class="st-n">5</span><div><b>Ábrela desde el ícono</b><span>Desde ahí funciona como app y puedes activar los avisos en Tú → Ajustes.</span><span class="ui-btn"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyQjMyMzgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMjE0MTciLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0Q5Rjk5RCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzY1QTMwRCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBmaWxsPSJ1cmwoI2cpIi8+PGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIyMjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzRTYzNSIgc3Ryb2tlLXdpZHRoPSIxMCIgb3BhY2l0eT0iLjkiLz48cmVjdCB4PSIxNTAiIHk9IjIzOCIgd2lkdGg9IjIxMiIgaGVpZ2h0PSIzNiIgcng9IjEwIiBmaWxsPSIjQzlEMUQ4Ii8+PHJlY3QgeD0iOTIiIHk9IjE2OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjE3NiIgcng9IjE0IiBmaWxsPSJ1cmwoI2wpIiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxyZWN0IHg9IjEzOCIgeT0iMTk2IiB3aWR0aD0iMzAiIGhlaWdodD0iMTIwIiByeD0iMTAiIGZpbGw9IiM4NENDMTYiIHN0cm9rZT0iIzBCMEQwRiIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHJlY3QgeD0iMzcyIiB5PSIxNjgiIHdpZHRoPSI0OCIgaGVpZ2h0PSIxNzYiIHJ4PSIxNCIgZmlsbD0idXJsKCNsKSIgc3Ryb2tlPSIjMEIwRDBGIiBzdHJva2Utd2lkdGg9IjYiLz48cmVjdCB4PSIzNDQiIHk9IjE5NiIgd2lkdGg9IjMwIiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjODRDQzE2IiBzdHJva2U9IiMwQjBEMEYiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Ik0yMjYgMTUwIEwyOTIgMTUwIEwyNzAgMjA2IEwzMDQgMjA2IEwyMjIgMzAwIEwyNDIgMjI4IEwyMDggMjI4IFoiIGZpbGw9IiNBM0U2MzUiIG9wYWNpdHk9IjAiLz48L3N2Zz4=" alt="" class="ico-img"><em>Newen</em></span></div></li></ol>
+    <ol class="steps" data-for="android" hidden><li><span class="st-n">1</span><div><b>Abre la app en Chrome</b><span>Si la abriste desde otra app, toca el menú y elige “Abrir en Chrome”.</span><span class="ui-btn">🌐<em>Chrome</em></span></div></li><li><span class="st-n">2</span><div><b>Toca el menú ⋮</b><span>Los tres puntos arriba a la derecha.</span><span class="ui-btn"><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="5" r="2" fill="currentColor"/><circle cx="12" cy="12" r="2" fill="currentColor"/><circle cx="12" cy="19" r="2" fill="currentColor"/></svg><em>Menú</em></span></div></li><li><span class="st-n">3</span><div><b>Elige “Instalar app” o “Agregar a la pantalla principal”</b><span>El nombre cambia según el teléfono.</span><span class="ui-btn"><svg viewBox="0 0 24 24" class="ico"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>Instalar app</em></span></div></li><li><span class="st-n">4</span><div><b>Confirma con “Instalar”</b><span>El ícono aparece en tu pantalla principal.</span></div></li><li><span class="st-n">5</span><div><b>Ábrela desde el ícono</b><span>Activa los avisos en Tú → Ajustes.</span></div></li></ol>
+    <button class="btn btn-primary btn-block" type="button" id="installNative" hidden style="margin-top:12px">⬇ Instalar ahora</button>
+    <div class="vid-links" id="vidInstall"></div>
+    <button class="btn btn-ghost btn-block" type="button" data-close style="margin-top:12px">Listo</button>
+  </div>
+</div>
+
+<div class="tour" id="tour" hidden role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+  <div class="tour-box">
+    <button class="tour-skip" type="button" data-tour="skip">Saltar</button>
+    <div class="tour-slides" id="tourSlides"></div>
+    <div class="tour-dots" id="tourDots" aria-hidden="true"></div>
+    <div class="tour-actions"><button class="btn btn-ghost" type="button" data-tour="prev">Atrás</button><button class="btn btn-primary" type="button" data-tour="next">Siguiente</button></div>
+  </div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <footer data-sec="inicio">

@@ -1,5 +1,5 @@
 // Service worker: recibe los avisos push y deja la app disponible sin conexión.
-const CACHE = 'gym-hombre-v3';
+const CACHE = 'newen-v5';
 const CORE = ['/', '/index.html', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png'];
 
 self.addEventListener('install', e => {
@@ -21,7 +21,7 @@ self.addEventListener('fetch', e => {
 self.addEventListener('push', e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = { body: e.data && e.data.text() }; }
-  const title = String(d.title || 'Mi Guía Gym').slice(0, 80);
+  const title = String(d.title || 'Newen').slice(0, 80);
   const body = String(d.body || '').slice(0, 300);
   const url = typeof d.url === 'string' && d.url.startsWith('/') ? d.url : '/';
   e.waitUntil(self.registration.showNotification(title, {
